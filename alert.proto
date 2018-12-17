@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Alert tile
+//
+//-------------------------------------------------------------------------------------
+
+// Tile config of tile/alert-list
+message AlertListTileConfig {
+
+	AlertListTileConfig_Source source = 1;
+
+	AlertListTileConfig_Display display = 2;
+
+	// TODO: Typing
+	google.protobuf.Value context = 3;
+}
+
+// Source options for alert list tile
+message AlertListTileConfig_Source {
+
+	// Set of severity types - encoded as integers in strings (e.g. "1")
+	repeated string severities = 1;
+
+	// Set of priority types - encoded as integers in strings (e.g. "1")
+	repeated string priorities = 2;
+
+	// Alert sources - typically "monitor" or "rule" (or both)
+	repeated string sources = 3;
+
+	// Alert owner (filter). Typically "any" or "me"
+	//
+	// This is encoded as 'value' because it arbitrarily switches between 
+	// a string or an array with only one element
+	google.protobuf.Value owner = 4;
+
+	// Set of states permitted - encoded as integers in strings (e.g. "-1")
+	//
+	// Typical value appears to be any (open) encoded as -1
+	repeated string states = 5;
+
+	// Timeframe of the alert display
+	AlertListTileConfig_Timeframe timeframe = 6;
+}
+
+message AlertListTileConfig_Timeframe {
+
+	// The type of timeframe. Always 'fixed'
+	string type = 1;
+
+	// The range of the timeframe
+	// 
+	// This is a string literal such as "Last1Hour", "Last12Months" etc.
+	string range = 2;
+
+	// Custom time range - referenced by the product but cannot actually be set or used
+	string timeframe_start = 3 [deprecated=true];
+	string timeframe_end = 4 [deprecated=true];
+}
+
+// Display options for alert list
+message AlertListTileConfig_Display {
+
+	// Max alerts to display
+	int32 limit = 1;
+
+	// Whether to display column titles
+	bool show_tiles = 2;
+
+	// Whether to show all alerts regardless of limit
+	bool show_all = 3;
+
+	// Column names to display in the list
+	repeated string columns = 4;
+}
+
+//-------------------------------------------------------------------------------------
+
+// Tile config of tile/alertlist-donut
+message AlertDonutTileConfig {
+
+	// We use the same source config as alert-list
+	AlertListTileConfig_Source source = 1;
+
+	AlertDonutTileConfig_Display display = 2;
+
+	// TODO: Typing
+	google.protobuf.Value context = 3;
+}
+
+message AlertDonutTileConfig_Display {
+
+	// Size behaviour of the doughnut - typically 'default' or 'fill'
+	string size_mode = 1;
+
+	// The scale factor of the legend
+	double legend_scale = 2;
+
+	// Whether to display a legend
+	bool show_legend = 3;
+
+	// Position of the legend - e.g. left, right etc.
+	string legend_position = 4;
+
+	// How to perform grouping - e.g. the default is "severity"
+	string grouping = 5;
+
+	AlertDonutTile_DisplayMappings mapping = 6;
+
+	// How groups are filtered - e.g. default is "Severity"
+	string grouping_filter_property = 7;
+}
+
+// Mappings from status names to display settings such as colour
+message AlertDonutTile_DisplayMappings {
+
+	// Status name -> mapping settings such as colour
+	map<string, AlertDonutTile_StatusDisplayMapping> values = 1;
+}
+
+// Mapping of a given status into display settings
+message AlertDonutTile_StatusDisplayMapping {
+	int32 value = 1;
+
+	// Hex colour value
+	string colour = 2;
+
+	// Display name of the mapping (e.g. "Information")
+	string display = 3;
+}

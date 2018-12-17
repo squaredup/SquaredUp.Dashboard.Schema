@@ -1,0 +1,1 @@
+docker run --rm --volume=%cd%:/input --volume=%cd%/../:/extoutput -e "PROTO_LANG=csharp" -e "PROTO_OUTPUT=/extoutput" protoc

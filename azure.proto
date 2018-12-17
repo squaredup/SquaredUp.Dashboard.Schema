@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Azure related tiles (app insights, log analytics)
+//
+//-------------------------------------------------------------------------------------
+
+// tile/azureappinsights-as-scalar
+message AzureInsightsAsScalarTileConfig {
+
+	AzureInsightsAsScalarTileConfig_Source source = 1;
+
+	AzureInsightsAsScalarTileConfig_Display display = 2;	
+}
+
+message AzureInsightsAsScalarTileConfig_Source {
+
+	// Content of the query body 
+	string contentBody = 1; 
+
+	// Method e.g. POST
+	string method = 2;
+
+	// e.g. application/json
+	string content_type = 3;
+}
+
+message AzureInsightsAsScalarTileConfig_Display {
+
+	// Font size (!! naming convention incorrect !!)
+	double fontsize = 1;
+
+	// Whether to coerce objects 
+	bool coerce_object = 2;
+}
+
+//-------------------------------------------------------------------------------------
+
+// tile/azureappinsights-as-table
+message AzureInsightsAsTableTileConfig {
+
+	AzureInsightsAsTableTileConfig_Source source = 1;
+
+	AzureInsightsAsTableTileConfig_Display display = 2;	
+}
+
+message AzureInsightsAsTableTileConfig_Source {
+
+	// Content of the query body 
+	string contentBody = 1; 
+
+	// Method e.g. POST
+	string method = 2;
+
+	// e.g. application/json
+	string content_type = 3;
+}
+
+message AzureInsightsAsTableTileConfig_Display {
+
+	// Whether to display table headers
+	bool show_headers = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/azureloganalytics-as-scalar
+
+message AzureLogAnalyticsAsScalarTileConfig {
+
+	AzureLogAnalyticsAsScalarTileConfig_Source source = 1;
+
+	AzureLogAnalyticsAsScalarTileConfig_Display display = 2;	
+}
+
+message AzureLogAnalyticsAsScalarTileConfig_Source {
+
+	// Content of the query body 
+	string contentBody = 1; 
+
+	// Method e.g. POST
+	string method = 2;
+
+	// e.g. application/json
+	string content_type = 3;
+}
+
+message AzureLogAnalyticsAsScalarTileConfig_Display {
+
+	// Font size (!! naming convention incorrect !!)
+	double fontsize = 1;
+
+	// Whether to coerce objects 
+	bool coerce_object = 2;
+}
+
+//-------------------------------------------------------------------------------------
+
+// tile/azureloganalytics-as-table
+message AzureLogAnalyticsAsTableTileConfig {
+
+	AzureLogAnalyticsAsTableTileConfig_Source source = 1;
+
+	AzureLogAnalyticsAsTableTileConfig_Display display = 2;	
+}
+
+message AzureLogAnalyticsAsTableTileConfig_Source {
+
+	// Content of the query body 
+	string contentBody = 1; 
+
+	// Method e.g. POST
+	string method = 2;
+
+	// e.g. application/json
+	string content_type = 3;
+}
+
+message AzureLogAnalyticsAsTableTileConfig_Display {
+
+	// Whether to display table headers
+	bool show_headers = 1;
+}

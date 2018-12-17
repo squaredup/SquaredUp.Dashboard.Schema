@@ -1,0 +1,200 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+// Convention notes:
+// -- all of the field names become camelCased when actually used in JSON
+// -- StringValue is used in place of string where a field is permitted to be null 
+//
+//
+message Dashboard {
+
+	// Typically page/scomdashboard
+	string _type = 1;
+
+	// UUID of the dashboard
+	string id = 2;
+
+	// ID of the dashboard this is a draft of
+	string derived_from = 3;
+
+	oneof _Title {
+		string title = 4;
+
+		// Perspectives have an identical schema but use 'name' in place of title
+		string name = 5;
+	}
+
+	// Details about the reference pack content this dashboard was created/installed from
+	ReferenceInfo created_from_reference = 6;
+
+	// The content of the dashboard is always a single root element - for example, a list or a column
+	// This root element can be of any type but it will almost certainly contain a 'contents' **array** of
+	// further nested elements
+	google.protobuf.Value content = 7;
+
+	// Custom actions
+	repeated DashboardAction actions = 8;
+
+	// Used in perspectives - whether to display as a dashboard
+	bool dashboard_mode = 9;
+
+	// Whether the dashboard is a draft
+	bool draft = 10;
+
+	// Version/revision of the dashboard
+	//
+	// This value is used but not currently honoured - e.g. the client side editor does not
+	// have a means of informing the user that they cannot save over a new version, for example
+	//
+	int32 version = 11;
+
+	// 'Tasks' is an array that previously served the same purpose as actions.
+	// Do not use
+	repeated google.protobuf.Value tasks = 12 [deprecated=true];
+
+	// Obsolete commentary field
+	string _comment = 13 [deprecated=true];
+
+	// The ranking order of a perspective
+	int32 rank = 14;
+
+	// Matching predicates for a perspective
+	PerspectiveMatch match = 15;
+
+	// TODO: requireLicenses
+	// 
+}
+
+// Custom action attached to a database
+message DashboardAction {
+
+	string name = 1;
+
+	// Whether to display this action in the UI regardless of whether the owner/container
+	// of the action is currently selected or visible
+	bool global = 2;
+
+	// Display options 
+	ActionDisplay display = 3;
+
+	// Parameters of any type (possibly nested objects)
+	map<string, google.protobuf.Value> parameters = 4;
+}
+
+// Display options for an action
+message ActionDisplay {
+
+	// Button text (e.g. 'report availability')
+	string text = 1;
+}
+
+// Information about what reference pack this dashboard was installed from
+message ReferenceInfo {
+
+	// The reference pack ID
+	string pack_id = 1;
+
+	// The ID of the particular dashboard in the reference pack from which we were
+	// copied/created
+	string item_id = 2;
+
+	// Version of the reference pack we were installed from 
+	//
+	// !! This property has inconsistent naming - it is NOT camel-cased in JSON and 
+	// therefore it is NOT snake-cased here !!
+	string packversion = 3;
+}
+
+// Fields common to ALL possible root elements and contents elements
+//
+// The intention here is that a deserializer will load Content from the root of the dashboard
+// and cast it to this type to learn what exact type it needs to be loaded as
+message AbstractDashboardContent {
+
+	// All root and child elements must have a type to determine what exactly it is
+	string _type = 1;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Dashboard layout types
+//
+//-------------------------------------------------------------------------------------
+
+// A set of entries in list form
+message LayoutList {
+
+	// Should be layout/list
+	string _type = 1; 
+
+	// Contents of the list - cast to AbstractDashboardContent to find type
+	repeated google.protobuf.Value contents = 2;
+}
+
+// Columns with specific widths making up a dashboard
+message LayoutColumn {
+
+	// Should be layout/column
+	string _type = 1;
+
+	// Set of individual columns within the layout
+	repeated LayoutColumn_Column columns = 2;
+}
+
+// A single column in layout/column
+message LayoutColumn_Column {
+
+	// Width of the column
+	double width = 1;
+
+	// Contents of the column - cast to AbstractDashboardContent to find type
+	repeated google.protobuf.Value contents = 2;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Dashboard tile types
+//
+//-------------------------------------------------------------------------------------
+
+// Fields common to all tiles that enable further dynamic deserialization
+//
+// Note that tile/new represents a title where all of the fields are empty (no config, description or 
+// title)
+message AbstractTile {
+
+	string _type = 1;
+
+	string title = 2;
+
+	// User editable description that is displayed under the title and typically explains what the tile is/does
+	string description = 3;
+
+	// Arbitrary config data (depends on _Type)
+	// 
+	google.protobuf.Value config = 4;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Perspective-specific types
+//
+//-------------------------------------------------------------------------------------
+
+message PerspectiveMatch {
+
+	// Exact ID match 
+	string id = 1;
+
+	// type of entity to match on, e.g. scom/object
+	string type = 2;
+
+	// Class IDs (although singular ID in practice) to match on
+	string class_ids = 3;
+
+	// Group IDs (although singular ID in practice) to match on
+	string group_ids = 4;
+}

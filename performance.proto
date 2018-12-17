@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  All SCOM performance (allscomperf)
+//
+//-------------------------------------------------------------------------------------
+
+// Tile config of tile/alert-list
+message AllScomPerfTileConfig {
+
+	AllScomPerfTileConfig_Source source = 1;
+
+	AllScomPerfTileConfig_Display display = 2;
+
+}
+
+message AllScomPerfTileConfig_Source {
+
+	// default is 'average'
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	AllScomPerfTileConfig_Timeframe timeframe = 3;
+
+	// These settings are shared/used by other performance tiles (and are not specified by allscomperf's defaults)
+	// - but in practice these values are set on various dashboards (e.g. all-performance.json) and are specified
+	// here for completeness as optional values
+	//
+	// !! Naming conventions here are broken !!
+	//
+	// Typically * (any)
+	string objectname = 4;  
+
+	// Typically * (any)
+	string countername = 5;
+
+
+}
+
+message AllScomPerfTileConfig_Timeframe {
+
+	// Default is 'inherit'
+	string type = 1;
+}
+
+message AllScomPerfTileConfig_Display {
+
+	// Default is 'fit'
+	string range = 1;
+}
