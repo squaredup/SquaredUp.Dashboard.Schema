@@ -15,6 +15,9 @@
 * image
 * knowledge-editor
 * matrix
+	* celltile/scomperf-as-sparkline
+	* celltile/status-block
+	* celltile/sla
 * monitorconfig
 * monitordetails
 * monitors

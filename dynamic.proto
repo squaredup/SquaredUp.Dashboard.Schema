@@ -45,3 +45,119 @@ message DynamicTableTileConfig_Display_Perspective {
 	// Default is null, so this is string value rather than string
 	google.protobuf.StringValue id = 1;
 }
+
+
+//-------------------------------------------------------------------------------------
+//
+//  Matrix tile
+//
+//-------------------------------------------------------------------------------------
+
+// tile/matrix
+message MatrixTileConfig {
+	MatrixTileConfig_Context context = 1;
+
+	MatrixTileConfig_Display display = 2;
+
+	// Generally empty (source: {})
+	google.protobuf.Value source = 3;
+}
+
+message MatrixTileConfig_Context {
+	MatrixTileConfig_Scope scope = 1;
+}
+
+message MatrixTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+
+	// Criteria (such as severity)
+	string criteria = 4;
+}
+
+message MatrixTileConfig_Display {
+
+	// e.g. "Large"
+	string mode = 1;
+
+	// e.g. "dyanmic"
+	string rendering = 2;
+
+	// whether to "always link to row object"
+	bool full_row_link = 3;
+
+	repeated MatrixTile_Column columns = 4;
+
+	MatrixTileConfig_Display_Perspective perspective = 5;
+}
+
+message MatrixTileConfig_Display_Perspective {
+	// ID of the perspective to use for the matrix tile
+	string id = 1;
+}
+
+message MatrixTile_Column {
+	string _type = 1;
+	string title = 2;	
+
+	// Config varying by type
+	google.protobuf.Value config = 3;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Matrix tile columns
+//
+//-------------------------------------------------------------------------------------
+
+// celltile/scomperf-as-sparkline
+message CellTile_ScomPerfAsSparkline_Config {
+	CellTile_ScomPerfAsSparkline_Config_Source source = 1;
+	CellTile_ScomPerfAsSparkline_Config_Display display = 2;
+}
+message CellTile_ScomPerfAsSparkline_Config_Source {
+
+	// !! Naming conventions here are broken !!
+	string objectname = 1;
+	string countername = 2;
+}
+message CellTile_ScomPerfAsSparkline_Config_Display {
+	string label_template = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/bar
+message CellTile_Bar_Config {
+	CellTile_Bar_Config_Source source = 1;
+	CellTile_Bar_Config_Display display = 2;
+
+}
+message CellTile_Bar_Config_Source {
+
+	// !! Naming conventions here are broken !!
+	string objectname = 1;
+	string countername = 2;
+}
+message CellTile_Bar_Config_Display {
+	string value_template = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/sla
+
+message CellTile_Sla_Config {
+	CellTile_Sla_Config_Source source = 1;
+
+}
+message CellTile_Sla_Config_Source {
+
+	// ID of the service level object to use for the SLA
+	string slo_id = 1;
+}

@@ -64,6 +64,9 @@ message Dashboard {
 	// Matching predicates for a perspective
 	PerspectiveMatch match = 16;
 
+	// Format, used for perspectives. Typically "page"
+	string format = 17;
+	
 	// TODO: requireLicenses
 	// 
 }

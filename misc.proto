@@ -10,3 +10,14 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //  Misc
 //
 //-------------------------------------------------------------------------------------
+
+// tile/knowledge-editor
+message KnowledgeEditorTileConfig {
+	KnowledgeEditorTileConfig_Source source = 1;
+}
+
+message KnowledgeEditorTileConfig_Source {
+
+	// Whether to allow editing of company knowledge
+	bool company_knowledge = 1;
+}
