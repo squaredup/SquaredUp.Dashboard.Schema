@@ -11,10 +11,6 @@
 * azureloganalytics-as-scalar
 * azureloganalytics-as-table
 * dynamic-table
-* eas
-* error
-* explore
-* hostingstack
 * web-content
 * image
 * knowledge-editor
@@ -55,3 +51,7 @@ The following tiles are ignored by this schema because they are used for special
 * button
 * community
 * Custom
+* eas
+* error
+* explore
+* hostingstack

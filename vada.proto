@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  VADA / EAM tiles
+//
+//-------------------------------------------------------------------------------------

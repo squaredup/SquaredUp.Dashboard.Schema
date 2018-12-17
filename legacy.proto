@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Helpers for obsolete formats and properties
+//
+//-------------------------------------------------------------------------------------
+
+// Early dashboards used _type at top level, while later the designer used just type.
+//
+// The top level type/_type is unused, and these schema messages are provided to help
+// distinguish whether the dashboard contains one form or the other. 
+//
+// The canonical root type in this schema assumes 'type' (no underscore) - callers need
+// to distinguish and then remove/modify _type fields appropriately
+
+message DashboardStandardType {
+	string type = 1;
+}
+
+message DashboardObsoleteType {
+	string _type = 1;
+}
+

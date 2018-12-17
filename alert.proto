@@ -24,28 +24,45 @@ message AlertListTileConfig {
 // Source options for alert list tile
 message AlertListTileConfig_Source {
 
+	AlertListTileConfig_Scope scope = 1;
+
 	// Set of severity types - encoded as integers in strings (e.g. "1")
-	repeated string severities = 1;
+	repeated string severities = 2;
 
 	// Set of priority types - encoded as integers in strings (e.g. "1")
-	repeated string priorities = 2;
+	repeated string priorities = 3;
 
 	// Alert sources - typically "monitor" or "rule" (or both)
-	repeated string sources = 3;
+	repeated string sources = 4;
 
 	// Alert owner (filter). Typically "any" or "me"
 	//
 	// This is encoded as 'value' because it arbitrarily switches between 
 	// a string or an array with only one element
-	google.protobuf.Value owner = 4;
+	google.protobuf.Value owner = 5;
 
 	// Set of states permitted - encoded as integers in strings (e.g. "-1")
 	//
 	// Typical value appears to be any (open) encoded as -1
-	repeated string states = 5;
+	repeated string states = 6;
 
 	// Timeframe of the alert display
-	AlertListTileConfig_Timeframe timeframe = 6;
+	AlertListTileConfig_Timeframe timeframe = 7;
+}
+
+message AlertListTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+
+	// Criteria (such as severity)
+	string criteria = 4;
 }
 
 message AlertListTileConfig_Timeframe {

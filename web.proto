@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Web content and web API tiles
+//
+//-------------------------------------------------------------------------------------
+
+// tile/web-content
+message WebContentTileConfig {
+	WebContentTileConfig_Display display = 1;
+
+	// Generally empty (source: {})
+	google.protobuf.Value source = 2;
+
+	// Generally empty
+	google.protobuf.Value context = 3;
+}
+
+message WebContentTileConfig_Display {
+	int32 height = 1;
+	double zoom = 2;
+	bool border = 3;
+	bool scrolling = 4;
+	bool refresh = 5;
+
+	// URL, if specified
+	string src = 6;
+
+	// Literal HTML content, if specified
+	string content = 7;
+}

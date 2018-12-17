@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Dyanmic table (tile/dynamic-table)
+//
+//-------------------------------------------------------------------------------------
+
+message DynamicTableTileConfig {
+	DynamicTableTileConfig_Context context = 1;
+	DynamicTableTileConfig_Display display = 2;
+}
+
+message DynamicTableTileConfig_Context {
+
+	DynamicTableTileConfig_Context_Scope scope = 1;
+
+	// Whether to bring back extended properties
+	bool extended_properties = 2;
+
+	// Whether to bring back alerts
+	bool alerts = 3;
+}
+
+message DynamicTableTileConfig_Context_Scope {
+
+	// ID of the group to match on
+	string group_id = 1;
+}
+
+message DynamicTableTileConfig_Display {
+
+	// Perspective to display (if any)
+	DynamicTableTileConfig_Display_Perspective perspective = 1;
+}
+
+message DynamicTableTileConfig_Display_Perspective {
+
+	// ID of any related perspective
+	// Default is null, so this is string value rather than string
+	google.protobuf.StringValue id = 1;
+}

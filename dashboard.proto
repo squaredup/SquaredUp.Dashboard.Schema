@@ -12,57 +12,57 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 message Dashboard {
 
 	// Typically page/scomdashboard
-	string _type = 1;
+	string type = 1;
 
 	// UUID of the dashboard
-	string id = 2;
+	string id = 3;
 
 	// ID of the dashboard this is a draft of
-	string derived_from = 3;
+	string derived_from = 4;
 
 	oneof _Title {
-		string title = 4;
+		string title = 5;
 
 		// Perspectives have an identical schema but use 'name' in place of title
-		string name = 5;
+		string name = 6;
 	}
 
 	// Details about the reference pack content this dashboard was created/installed from
-	ReferenceInfo created_from_reference = 6;
+	ReferenceInfo created_from_reference = 7;
 
 	// The content of the dashboard is always a single root element - for example, a list or a column
 	// This root element can be of any type but it will almost certainly contain a 'contents' **array** of
 	// further nested elements
-	google.protobuf.Value content = 7;
+	google.protobuf.Value content = 8;
 
 	// Custom actions
-	repeated DashboardAction actions = 8;
+	repeated DashboardAction actions = 9;
 
 	// Used in perspectives - whether to display as a dashboard
-	bool dashboard_mode = 9;
+	bool dashboard_mode = 10;
 
 	// Whether the dashboard is a draft
-	bool draft = 10;
+	bool draft = 11;
 
 	// Version/revision of the dashboard
 	//
 	// This value is used but not currently honoured - e.g. the client side editor does not
 	// have a means of informing the user that they cannot save over a new version, for example
 	//
-	int32 version = 11;
+	int32 version = 12;
 
 	// 'Tasks' is an array that previously served the same purpose as actions.
 	// Do not use
-	repeated google.protobuf.Value tasks = 12 [deprecated=true];
+	repeated google.protobuf.Value tasks = 13 [deprecated=true];
 
 	// Obsolete commentary field
-	string _comment = 13 [deprecated=true];
+	string _comment = 14 [deprecated=true];
 
 	// The ranking order of a perspective
-	int32 rank = 14;
+	int32 rank = 15;
 
 	// Matching predicates for a perspective
-	PerspectiveMatch match = 15;
+	PerspectiveMatch match = 16;
 
 	// TODO: requireLicenses
 	// 
