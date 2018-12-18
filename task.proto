@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  SCOM task related tiles
+//
+//-------------------------------------------------------------------------------------
+
+// tile/scomtask-as-text
+message ScomTaskAsTextTileConfig {
+    ScomTaskAsTextTileConfig_Context context = 1;
+    ScomTaskAsTextTileConfig_Source source = 2;
+}
+
+message ScomTaskAsTextTileConfig_Context {
+
+    string object_id = 1;
+
+    // This scope is not actually used because the tile only supports a single 
+    // monitored object
+
+    ScomTaskAsTextTileConfig_Context_Scope scope = 2;    
+}
+
+message ScomTaskAsTextTileConfig_Context_Scope {
+    // TODO: May contain redudnant class ID etc. that is ignored?
+}
+
+message ScomTaskAsTextTileConfig_Source {
+
+    // ID of the task to execute
+    string task_id = 1;
+
+    repeated ScomTaskAsTextTileConfig_Source_Parameter parameters = 2;
+}
+
+message ScomTaskAsTextTileConfig_Source_Parameter {
+    string key = 1;
+
+    // Assumed to be arbitrary type although often string in practice
+    google.protobuf.Value value = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomtask-as-table
+
+message ScomTaskAsTableTileConfig {
+    ScomTaskAsTableTileConfig_Context context = 1;
+    ScomTaskAsTableTileConfig_Source source = 2;
+    ScomTaskAsTableTileConfig_Display display = 3;
+}
+
+message ScomTaskAsTableTileConfig_Context {
+
+    string object_id = 1;
+
+    // This scope is not actually used because the tile only supports a single 
+    // monitored object
+
+    ScomTaskAsTableTileConfig_Context_Scope scope = 2;    
+}
+
+message ScomTaskAsTableTileConfig_Context_Scope {
+    // TODO: May contain redudnant class ID etc. that is ignored?
+}
+
+message ScomTaskAsTableTileConfig_Source {
+
+    // eg. powershell/table
+    string format = 1;
+
+    int32 skip_lines = 2;
+
+    string task_id = 3;
+
+    repeated ScomTaskAsTableTileConfig_Source_Parameter parameters = 4;
+}
+
+message ScomTaskAsTableTileConfig_Source_Parameter {
+    string key = 1;
+    
+    // Assumed to be arbitrary type although often string in practice
+    google.protobuf.Value value = 2;
+}
+
+message ScomTaskAsTableTileConfig_Display {
+
+    // !! Property inconsistent with naming scheme !!
+    bool autohide = 1;
+    string row_link = 2;
+    bool show_headers = 3;
+
+    // Column template overrides
+    // name -> override data
+    map<string, ScomTaskAsTableTileConfig_ColumnOverride> column_overrides = 4;
+
+    // Custom columns
+    // internal name (e.g. custom_column) -> data key path
+    map<string, string> custom_columns = 5;
+
+    // List/order of each column
+    repeated string columns = 6;
+}
+
+message ScomTaskAsTableTileConfig_ColumnOverride {
+    string template = 1;
+}

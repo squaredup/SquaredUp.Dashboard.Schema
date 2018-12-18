@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  SQL tile
+//
+//-------------------------------------------------------------------------------------
+// tile/sql-as-scalar
+message SqlAsScalarTileConfig {
+    SqlAsScalarTileConfig_Context context = 1;
+    SqlAsScalarTileConfig_Source source = 2;
+    SqlAsScalarTileConfig_Display display = 3;
+}
+
+message SqlAsScalarTileConfig_Context {
+    // Always empty
+}
+
+message SqlAsScalarTileConfig_Source {
+    string _security = 1;
+
+    // !! Inconsistent vs. naming scheme !!
+    string connectionstring = 2;
+    string querystring = 3;
+}
+
+message SqlAsScalarTileConfig_Display {
+    double fontsize = 1;
+    bool coerce_object = 2;
+    string unit = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/sql-as-table
+
+message SqlAsTableTileConfig {
+    SqlAsTableTileConfig_Context context = 1;
+    SqlAsTableTileConfig_Source source = 2;
+    SqlAsTableTileConfig_Display display = 3;
+}
+
+message SqlAsTableTileConfig_Context {
+    // Always empty
+}
+
+message SqlAsTableTileConfig_Source {
+    string _security = 1;
+
+    // !! Inconsistent vs. naming scheme !!
+    string connectionstring = 2;
+    string querystring = 3;
+}
+
+message SqlAsTableTileConfig_Display {
+    bool show_headers = 1;
+    
+    // !! Inconsistent vs. naming scheme !!
+    bool autohide = 2;
+
+    string row_link = 3;    
+
+    // Column template overrides
+    // name -> override data
+    map<string, SqlAsTableTileConfig_ColumnOverride> column_overrides = 4;
+
+    // Custom columns
+    // internal name (e.g. custom_column) -> data key path
+    map<string, string> custom_columns = 5;
+
+    // List/order of each column
+    repeated string columns = 6;
+}
+
+message SqlAsTableTileConfig_ColumnOverride {
+    string template = 1;
+}

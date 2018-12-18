@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  SLA tile
+//
+//-------------------------------------------------------------------------------------
+
+message SlaTileConfig {
+    SlaTileConfig_Context context = 1;
+    SlaTileConfig_Source source = 2;
+    SlaTileConfig_Display display = 3;
+}
+
+message SlaTileConfig_Context {
+    SlaTileConfig_Scope scope = 1;
+}
+
+message SlaTileConfig_Scope {
+    
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+}
+
+message SlaTileConfig_Source {
+    SlaTileConfig_Source_Timeframe timeframe = 1;
+
+	// ID of the service level object to use for the SLA
+    string slo_id = 2;
+}
+
+message SlaTileConfig_Source_Timeframe {
+    string type = 1;
+}
+
+message SlaTileConfig_Display {
+    bool show_icon = 1;
+    bool show_label = 2;
+    bool show_gauge = 3;
+    string style = 4;
+    double min = 5;
+    double max = 6;
+    string label = 7;
+    string custom_label = 8;
+}
