@@ -1,5 +1,8 @@
 # Dashboard/perspective schema
 
+## TODO
+* Timeframe is duplicated and only supports 'type'
+
 ## Tiles
 
 ## General purpose

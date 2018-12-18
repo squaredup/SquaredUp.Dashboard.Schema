@@ -10,7 +10,7 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //
 //-------------------------------------------------------------------------------------
 
-// Tile config of tile/alert-list
+// tile/allscomperf
 message AllScomPerfTileConfig {
 
 	AllScomPerfTileConfig_Source source = 1;
@@ -40,8 +40,6 @@ message AllScomPerfTileConfig_Source {
 
 	// Typically * (any)
 	string countername = 5;
-
-
 }
 
 message AllScomPerfTileConfig_Timeframe {
@@ -54,4 +52,285 @@ message AllScomPerfTileConfig_Display {
 
 	// Default is 'fit'
 	string range = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-bar
+
+message ScomPerfAsBarTileConfig {
+	ScomPerfAsBarTileConfig_Source source = 1;
+	ScomPerfAsBarTileConfig_Display display = 2;
+	ScomPerfAsBarTileConfig_Context context = 3;
+}
+
+message ScomPerfAsBarTileConfig_Source {
+	// default is 'average'
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	ScomPerfAsBarTileConfig_Timeframe timeframe = 3;
+
+	// e.g. "LogicalDisk"
+	string objectname = 4;  
+
+	// e.g. "% Free Space"
+	string countername = 5;
+}
+
+message ScomPerfAsBarTileConfig_Timeframe {
+
+	// Default is 'inherit'
+	string type = 1;
+}
+
+message ScomPerfAsBarTileConfig_Display {
+	string label_template = 1;
+
+	// e.g. percentage
+	string range = 2;	
+
+	repeated string unit_key = 3;
+
+	// e.g. auto
+	string label = 4;
+}
+
+message ScomPerfAsBarTileConfig_Context {
+	ScomPerfAsBarTileConfig_Scope scope = 1;
+}
+
+message ScomPerfAsBarTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-heatmap
+
+message ScomPerfAsHeatmapTileConfig {
+	ScomPerfAsHeatmapTileConfig_Context context = 1;
+	ScomPerfAsHeatmapTileConfig_Source source = 2;
+	ScomPerfAsHeatmapTileConfig_Display display = 3;
+}
+
+message ScomPerfAsHeatmapTileConfig_Source {
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	// e.g. "LogicalDisk"
+	string objectname = 3;  
+
+	// e.g. "% Free Space"
+	string countername = 4;
+
+	string instancename = 5;
+}
+
+message ScomPerfAsHeatmapTileConfig_Context {
+	ScomPerfAsHeatmapTileConfig_Scope scope = 1;
+}
+
+message ScomPerfAsHeatmapTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+}
+
+message ScomPerfAsHeatmapTileConfig_Display {
+	double size_scale = 1;
+
+	uint32 red = 2;
+	uint32 green = 3;
+	uint32 blue = 4;
+
+	// e.g. properties.isVirtualNode
+	string size_property = 5;
+
+	double height = 6;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph
+
+message ScomPerfAsLineGraphTileConfig {
+	ScomPerfAsLineGraphTileConfig_Context context = 1;
+	ScomPerfAsLineGraphTileConfig_Source source = 2;
+	ScomPerfAsLineGraphTileConfig_Display display = 3;
+}
+
+message ScomPerfAsLineGraphTileConfig_Source {
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	// e.g. "LogicalDisk"
+	string objectname = 3;  
+
+	// e.g. "% Free Space"
+	string countername = 4;
+
+	string instancename = 5;
+
+	ScomPerfAsLineGraphTileConfig_Timeframe timeframe = 6;
+}
+
+message ScomPerfAsLineGraphTileConfig_Timeframe {
+	
+	// Default is 'inherit'
+	string type = 1;
+}
+
+message ScomPerfAsLineGraphTileConfig_Context {
+	ScomPerfAsLineGraphTileConfig_Scope scope = 1;
+}
+
+message ScomPerfAsLineGraphTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+}
+
+message ScomPerfAsLineGraphTileConfig_Display {
+
+	// e.g. fit
+	string range = 1;
+
+	// e.g. object, counter
+	repeated string unit_key = 2;
+
+	double height = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph-report
+
+message ScomPerfAsLineGraphReportTileConfig {
+	ScomPerfAsLineGraphReportTileConfig_Source source = 1;
+	ScomPerfAsLineGraphReportTileConfig_Display display = 2;
+}
+
+message ScomPerfAsLineGraphReportTileConfig_Source {
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	// e.g. "LogicalDisk"
+	string objectname = 3;  
+
+	// e.g. "% Free Space"
+	string countername = 4;
+
+	string instancename = 5;
+
+	ScomPerfAsLineGraphReportTileConfig_Timeframe timeframe = 6;
+}
+
+message ScomPerfAsLineGraphReportTileConfig_Timeframe {
+	
+	// Default is 'inherit'
+	string type = 1;
+}
+
+message ScomPerfAsLineGraphReportTileConfig_Display {
+	
+	// e.g. fit
+	string range = 1;
+	double height = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-spark-lines
+
+message ScomPerfAsSparklinesTileConfig {
+	ScomPerfAsSparklinesTileConfig_Context context = 1;
+	ScomPerfAsSparklinesTileConfig_Source source = 2;
+	ScomPerfAsSparklinesTileConfig_Display display = 3;
+}
+
+message ScomPerfAsSparklinesTileConfig_Context {
+	ScomPerfAsSparklinesTileConfig_Scope scope = 1;
+}
+
+message ScomPerfAsSparklinesTileConfig_Scope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+}
+
+message ScomPerfAsSparklinesTileConfig_Source {
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	// e.g. "LogicalDisk"
+	string objectname = 3;  
+
+	// e.g. "% Free Space"
+	string countername = 4;
+
+	string instancename = 5;
+
+	ScomPerfAsSparklinesTileConfig_Timeframe timeframe = 6;
+}
+
+message ScomPerfAsSparklinesTileConfig_Timeframe {
+	
+	// Default is 'inherit'
+	string type = 1;
+}
+
+message ScomPerfAsSparklinesTileConfig_Display {
+
+	string label_template = 1;
+
+	// e.g. percentage
+	string range = 2;	
+
+	repeated string unit_key = 3;
+
+	// e.g. auto
+	string label = 4;
+
+	// !! Naming convention inconsistency here !!
+	//
+	double rangemin = 5;
+
+	double rangemax = 6;
+
+	string custom_label = 7;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 8;
 }
