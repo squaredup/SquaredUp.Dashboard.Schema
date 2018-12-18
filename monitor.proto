@@ -27,6 +27,7 @@ message MonitorConfigTileConfig_Source {
 // tile/monitordetails
 message MonitorDetailsTileConfig {
     MonitorDetailsTileConfig_Source source = 1;
+    MonitorDetailsTileConfig_Display display = 2;
 }
 
 message MonitorDetailsTileConfig_Source {

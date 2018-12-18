@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "scope.proto";
+import "timeframe.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -27,7 +29,7 @@ message AllScomPerfTileConfig_Source {
 	// default is 'raw'
 	string resolution = 2; 
 
-	AllScomPerfTileConfig_Timeframe timeframe = 3;
+	CommonTimeframe timeframe = 3;
 
 	// These settings are shared/used by other performance tiles (and are not specified by allscomperf's defaults)
 	// - but in practice these values are set on various dashboards (e.g. all-performance.json) and are specified
@@ -40,12 +42,6 @@ message AllScomPerfTileConfig_Source {
 
 	// Typically * (any)
 	string countername = 5;
-}
-
-message AllScomPerfTileConfig_Timeframe {
-
-	// Default is 'inherit'
-	string type = 1;
 }
 
 message AllScomPerfTileConfig_Display {
@@ -70,19 +66,13 @@ message ScomPerfAsBarTileConfig_Source {
 	// default is 'raw'
 	string resolution = 2; 
 
-	ScomPerfAsBarTileConfig_Timeframe timeframe = 3;
+	CommonTimeframe timeframe = 3;
 
 	// e.g. "LogicalDisk"
 	string objectname = 4;  
 
 	// e.g. "% Free Space"
 	string countername = 5;
-}
-
-message ScomPerfAsBarTileConfig_Timeframe {
-
-	// Default is 'inherit'
-	string type = 1;
 }
 
 message ScomPerfAsBarTileConfig_Display {
@@ -98,19 +88,7 @@ message ScomPerfAsBarTileConfig_Display {
 }
 
 message ScomPerfAsBarTileConfig_Context {
-	ScomPerfAsBarTileConfig_Scope scope = 1;
-}
-
-message ScomPerfAsBarTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
+	CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
@@ -138,19 +116,7 @@ message ScomPerfAsHeatmapTileConfig_Source {
 }
 
 message ScomPerfAsHeatmapTileConfig_Context {
-	ScomPerfAsHeatmapTileConfig_Scope scope = 1;
-}
-
-message ScomPerfAsHeatmapTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
+	CommonScope scope = 1;
 }
 
 message ScomPerfAsHeatmapTileConfig_Display {
@@ -189,29 +155,11 @@ message ScomPerfAsLineGraphTileConfig_Source {
 
 	string instancename = 5;
 
-	ScomPerfAsLineGraphTileConfig_Timeframe timeframe = 6;
-}
-
-message ScomPerfAsLineGraphTileConfig_Timeframe {
-	
-	// Default is 'inherit'
-	string type = 1;
+	CommonTimeframe timeframe = 6;
 }
 
 message ScomPerfAsLineGraphTileConfig_Context {
-	ScomPerfAsLineGraphTileConfig_Scope scope = 1;
-}
-
-message ScomPerfAsLineGraphTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
+	CommonScope scope = 1;
 }
 
 message ScomPerfAsLineGraphTileConfig_Display {
@@ -223,6 +171,10 @@ message ScomPerfAsLineGraphTileConfig_Display {
 	repeated string unit_key = 2;
 
 	double height = 3;
+
+	string label = 4;
+
+	string custom_label = 5;
 }
 
 //-------------------------------------------------------------------------------------
@@ -247,13 +199,7 @@ message ScomPerfAsLineGraphReportTileConfig_Source {
 
 	string instancename = 5;
 
-	ScomPerfAsLineGraphReportTileConfig_Timeframe timeframe = 6;
-}
-
-message ScomPerfAsLineGraphReportTileConfig_Timeframe {
-	
-	// Default is 'inherit'
-	string type = 1;
+	CommonTimeframe timeframe = 6;
 }
 
 message ScomPerfAsLineGraphReportTileConfig_Display {
@@ -273,19 +219,7 @@ message ScomPerfAsSparklinesTileConfig {
 }
 
 message ScomPerfAsSparklinesTileConfig_Context {
-	ScomPerfAsSparklinesTileConfig_Scope scope = 1;
-}
-
-message ScomPerfAsSparklinesTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
+	CommonScope scope = 1;
 }
 
 message ScomPerfAsSparklinesTileConfig_Source {
@@ -302,13 +236,7 @@ message ScomPerfAsSparklinesTileConfig_Source {
 
 	string instancename = 5;
 
-	ScomPerfAsSparklinesTileConfig_Timeframe timeframe = 6;
-}
-
-message ScomPerfAsSparklinesTileConfig_Timeframe {
-	
-	// Default is 'inherit'
-	string type = 1;
+	CommonTimeframe timeframe = 6;
 }
 
 message ScomPerfAsSparklinesTileConfig_Display {

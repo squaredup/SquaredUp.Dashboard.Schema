@@ -3,6 +3,8 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
+import "context.proto";
+
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
 //-------------------------------------------------------------------------------------
@@ -10,3 +12,30 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //  VADA / EAM tiles
 //
 //-------------------------------------------------------------------------------------
+
+message VadaTileConfig {
+    VadaTileConfig_Filters filters = 1;
+
+    // Typically 'discover'
+    string mode = 2;
+
+    repeated string providers = 3;
+
+    bool rundiscoveryoninit = 4;
+
+    VadaTileConfig_Transforms transforms = 5;
+
+    bool vadaperspective = 6;   
+
+    bool readonly = 7;
+
+    CommonContext context = 8;
+}
+
+message VadaTileConfig_Filters {
+    repeated string processnames = 1;
+}
+
+message VadaTileConfig_Transforms {
+
+}

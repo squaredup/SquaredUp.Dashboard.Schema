@@ -3,6 +3,10 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
+import "scope.proto";
+import "context.proto";
+import "timeframe.proto";
+
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
 //-------------------------------------------------------------------------------------
@@ -12,25 +16,8 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //-------------------------------------------------------------------------------------
 
 message DynamicTableTileConfig {
-	DynamicTableTileConfig_Context context = 1;
+	CommonContext context = 1;
 	DynamicTableTileConfig_Display display = 2;
-}
-
-message DynamicTableTileConfig_Context {
-
-	DynamicTableTileConfig_Context_Scope scope = 1;
-
-	// Whether to bring back extended properties
-	bool extended_properties = 2;
-
-	// Whether to bring back alerts
-	bool alerts = 3;
-}
-
-message DynamicTableTileConfig_Context_Scope {
-
-	// ID of the group to match on
-	string group_id = 1;
 }
 
 message DynamicTableTileConfig_Display {
@@ -55,31 +42,12 @@ message DynamicTableTileConfig_Display_Perspective {
 
 // tile/matrix
 message MatrixTileConfig {
-	MatrixTileConfig_Context context = 1;
+	CommonContext context = 1;
 
 	MatrixTileConfig_Display display = 2;
 
 	// Generally empty (source: {})
 	google.protobuf.Value source = 3;
-}
-
-message MatrixTileConfig_Context {
-	MatrixTileConfig_Scope scope = 1;
-}
-
-message MatrixTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
-
-	// Criteria (such as severity)
-	string criteria = 4;
 }
 
 message MatrixTileConfig_Display {
@@ -111,6 +79,13 @@ message MatrixTile_Column {
 	google.protobuf.Value config = 3;
 }
 
+// Transform type - many celltiles have 'transforms' in common
+// which cotnains this type
+message MatrixTile_Transform {
+	string operator = 1;
+	map<string, google.protobuf.Value> parameters = 2;
+}
+
 //-------------------------------------------------------------------------------------
 //
 //  Matrix tile columns
@@ -121,6 +96,7 @@ message MatrixTile_Column {
 message CellTile_ScomPerfAsSparkline_Config {
 	CellTile_ScomPerfAsSparkline_Config_Source source = 1;
 	CellTile_ScomPerfAsSparkline_Config_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
 }
 message CellTile_ScomPerfAsSparkline_Config_Source {
 
@@ -137,6 +113,7 @@ message CellTile_ScomPerfAsSparkline_Config_Display {
 message CellTile_Bar_Config {
 	CellTile_Bar_Config_Source source = 1;
 	CellTile_Bar_Config_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
 
 }
 message CellTile_Bar_Config_Source {
@@ -154,10 +131,102 @@ message CellTile_Bar_Config_Display {
 
 message CellTile_Sla_Config {
 	CellTile_Sla_Config_Source source = 1;
+	repeated MatrixTile_Transform transforms = 3;
 
 }
 message CellTile_Sla_Config_Source {
 
 	// ID of the service level object to use for the SLA
 	string slo_id = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/text
+
+message CellTile_Text_Config {
+	CellTile_Text_Display display = 1;
+	repeated MatrixTile_Transform transforms = 3;
+
+}
+message CellTile_Text_Display {
+	string content_template = 1;
+	string cell_width = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/signalstrength
+
+message CellTile_SignalStrength_Config {
+	CellTile_SignalStrength_Display display = 1;
+	repeated MatrixTile_Transform transforms = 3;
+
+}
+message CellTile_SignalStrength_Display {
+	// property accessor to execute and retrieve the numeric value. 
+	string value_property = 1;
+	int32 height = 2;
+	int32 width = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/monitor
+
+message CellTile_Monitor_Config {
+	CellTile_Monitor_Source source = 1;
+	CellTile_Monitor_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
+}
+
+message CellTile_Monitor_Source {
+	repeated string monitor_ids = 1;
+}
+
+message CellTile_Monitor_Display {
+	bool show_label = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/status
+
+message CellTile_Status_Config {
+	CellTile_Status_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
+}
+
+message CellTile_Status_Display {
+	bool show_status_icon = 1;
+	string label_template = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/status-block
+
+message CellTile_StatusBlock_Config {
+	CellTile_StatusBlock_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
+}
+
+message CellTile_StatusBlock_Display {
+	bool full_width = 1;
+	string label_template = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/timeseriesblocks
+
+message CellTile_TimeseriesBlocks_Config {
+	CellTile_TimeseriesBlocks_Source source = 1;
+	CellTile_TimeseriesBlocks_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
+}
+
+message CellTile_TimeseriesBlocks_Display {
+	int32 width = 1;
+	bool full_width = 2;
+	string cell_width = 3;
+}
+
+message CellTile_TimeseriesBlocks_Source {
+	repeated string monitor_ids = 1;
+	CommonTimeframe timeframe = 4;
 }

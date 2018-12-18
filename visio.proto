@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "scope.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -22,22 +23,7 @@ message VisioTileConfig_Context {
 }
 
 message VisioTileConfig_Source {
-    VisioTileConfig_Scope scope = 1;
-}
-
-message VisioTileConfig_Scope {
-    
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-    string classId = 3;
-    
-    // Can be children or parents
-    string type = 4;
+    CommonScope scope = 1;
 }
 
 message VisioTileConfig_Display {

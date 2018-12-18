@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "scope.proto";
+import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -12,32 +14,15 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 // tile/status
 
 message StatusTileConfg {
-    StatusTileConfg_Context context = 1;
+    CommonContext context = 1;
     StatusTileConfg_Source source = 2;
     StatusTileConfg_Display display = 3;
 }
 
-message StatusTileConfg_Context {
-    // Always empty
-}
-
-message StatusTileConfg_Scope {
-    
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-    string classId = 3;
-    
-    // Can be children or parents
-    string type = 4;
-}
-
 message StatusTileConfg_Source {
-    StatusTileConfg_Scope scope = 1;
+    CommonScope scope = 1;
+    bool alerts = 2;
+    bool extendedProperties = 3;
 }
 
 message StatusTileConfg_Display {
@@ -62,32 +47,15 @@ message StatusTileConfg_Display_SortKey {
 // tile/status-block
 
 message StatusBlockTileConfig {
-    StatusBlockTileConfig_Context context = 1;
+    CommonContext context = 1;
     StatusBlockTileConfig_Source source = 2;
     StatusBlockTileConfig_Display display = 3;
 }
 
-message StatusBlockTileConfig_Context {
-    // Always empty
-}
-
-message StatusBlockTileConfig_Scope {
-    
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-    string classId = 3;
-    
-    // Can be children or parents
-    string type = 4;
-}
-
 message StatusBlockTileConfig_Source {
-    StatusBlockTileConfig_Scope scope = 1;
+    CommonScope scope = 1;
+    bool alerts = 2;
+    bool extendedProperties = 3;
 }
 
 message StatusBlockTileConfig_Display {
@@ -116,32 +84,15 @@ message StatusBlockTileConfig_Display_SortKey {
 // tile/status-donut
 
 message StatusDonutTileConfig {
-    StatusDonutTileConfig_Context context = 1;
+    CommonContext context = 1;
     StatusDonutTileConfig_Source source = 2;
     StatusDonutTileConfig_Display display = 3;
 }
 
-message StatusDonutTileConfig_Context {
-    // Always empty
-}
-
-message StatusDonutTileConfig_Scope {
-    
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-    string classId = 3;
-    
-    // Can be children or parents
-    string type = 4;
-}
-
 message StatusDonutTileConfig_Source {
-    StatusDonutTileConfig_Scope scope = 1;
+    CommonScope scope = 1;
+    bool alerts = 2;
+    bool extendedProperties = 3;
 }
 
 message StatusDonutTileConfig_Display {

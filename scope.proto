@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+message CommonScope {
+
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+	string classId = 3;
+
+	// Criteria (such as severity)
+    string criteria = 4;
+        
+    // Can be children or parents
+    string type = 5;
+
+    // Traversal depth eg. recursive
+    string traversal_depth = 6;
+}

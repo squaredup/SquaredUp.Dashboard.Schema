@@ -64,11 +64,17 @@ message Dashboard {
 	// Matching predicates for a perspective
 	PerspectiveMatch match = 16;
 
-	// Format, used for perspectives. Typically "page"
+	// Format, used for perspectives. Typically "page" but can be 'row'
 	string format = 17;
 	
-	// TODO: requireLicenses
-	// 
+	// If a dashboard is of format 'row' (and is in fact a row perspective), the 'columns'
+	// are all individual cell tiles which can be validated against appropriate tile schema
+	repeated google.protobuf.Value columns = 18;
+
+	// String names of the licenses required for view/use. Most common on perspectives
+	repeated string required_licenses = 19;
+
+	OpenAccess open_access = 20;
 }
 
 // Custom action attached to a database
@@ -208,4 +214,20 @@ message PerspectiveMatch {
 
 	// TODO: Requires documentation. This field appears to be obsolete
 	bool is_monitor_alert = 6 [deprecated=true];
+
+	// Explanatory name of the match - appears unused?
+	string name = 7 [deprecated=true];
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Open Access
+//
+//-------------------------------------------------------------------------------------
+
+message OpenAccess {
+	bool enabled = 1;
+
+	// Not currently used
+	google.protobuf.Value contexts = 2;
 }

@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "timeframe.proto";
+import "scope.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -24,7 +26,7 @@ message AlertListTileConfig {
 // Source options for alert list tile
 message AlertListTileConfig_Source {
 
-	AlertListTileConfig_Scope scope = 1;
+	CommonScope scope = 1;
 
 	// Set of severity types - encoded as integers in strings (e.g. "1")
 	repeated string severities = 2;
@@ -47,37 +49,7 @@ message AlertListTileConfig_Source {
 	repeated string states = 6;
 
 	// Timeframe of the alert display
-	AlertListTileConfig_Timeframe timeframe = 7;
-}
-
-message AlertListTileConfig_Scope {
-
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
-
-	// Criteria (such as severity)
-	string criteria = 4;
-}
-
-message AlertListTileConfig_Timeframe {
-
-	// The type of timeframe. Always 'fixed'
-	string type = 1;
-
-	// The range of the timeframe
-	// 
-	// This is a string literal such as "Last1Hour", "Last12Months" etc.
-	string range = 2;
-
-	// Custom time range - referenced by the product but cannot actually be set or used
-	string timeframe_start = 3 [deprecated=true];
-	string timeframe_end = 4 [deprecated=true];
+	CommonTimeframe timeframe = 7;
 }
 
 // Display options for alert list

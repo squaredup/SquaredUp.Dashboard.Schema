@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "scope.proto";
+import "timeframe.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -17,30 +19,14 @@ message SlaTileConfig {
 }
 
 message SlaTileConfig_Context {
-    SlaTileConfig_Scope scope = 1;
-}
-
-message SlaTileConfig_Scope {
-    
-	// Group ID of the scope
-	string group_id = 1;
-
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
-
-	// A specific class ID
-	string classId = 3;
+    CommonScope scope = 1;
 }
 
 message SlaTileConfig_Source {
-    SlaTileConfig_Source_Timeframe timeframe = 1;
+    CommonTimeframe timeframe = 1;
 
 	// ID of the service level object to use for the SLA
     string slo_id = 2;
-}
-
-message SlaTileConfig_Source_Timeframe {
-    string type = 1;
 }
 
 message SlaTileConfig_Display {

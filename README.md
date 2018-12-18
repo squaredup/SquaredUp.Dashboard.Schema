@@ -4,6 +4,7 @@
 * Timeframe is duplicated and only supports 'type'
 * Traversal mode and 'type' on scope is shared across many tiles
 * 'zoom' is supported for display of most tiles
+* Cell tiles support 'timeframe' which is undocumented
 
 ## Tiles
 
@@ -23,6 +24,9 @@
 	* celltile/scomperf-as-sparkline
 	* celltile/status-block
 	* celltile/sla
+	* celltile/signalstrength
+	* celltile/status
+	* celltile/text
 * monitorconfig
 * monitordetails
 * monitors
