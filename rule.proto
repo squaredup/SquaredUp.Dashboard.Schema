@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Rules
+//
+//-------------------------------------------------------------------------------------
+
+// tile/ruleconfig
+message RuleConfigTileConfig {
+    RuleConfigTileConfig_Source source = 1;
+}
+
+message RuleConfigTileConfig_Source {
+
+    // ID of the rule - typically 'inherit'
+    string rule_id = 1;
+    bool rule_only = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/ruledetails
+
+message RuleDetailsTileConfig {
+    RuleDetailsTileConfig_Source source = 1;
+    RuleDetailsTileConfig_Display display = 2;
+}
+
+message RuleDetailsTileConfig_Source {
+
+    // ID of the rule - typically 'inherit'
+    string rule_id = 1;
+}
+
+message RuleDetailsTileConfig_Display {
+
+    // Whether to display drilldown per rule
+    bool show_drilldown = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/rules
+
+message RulesTileConfig {
+    RulesTileConfig_Source source = 1;
+    RulesTileConfig_Display display = 2;
+}
+
+message RulesTileConfig_Source {
+
+    // IDs of the rules
+    repeated string rule_ids = 1;
+}
+
+message RulesTileConfig_Display {
+
+    // Rule statuses to display (e.g. Enabled, Disabled)
+    repeated string show = 1;
+
+    // Zoom level e.g. "column"
+    string zoom = 2;
+}

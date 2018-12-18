@@ -22,7 +22,6 @@
 * monitordetails
 * monitors
 * monitorstatechangehistory
-* new 
 * ruleconfig
 * ruledetails
 * rules
@@ -58,3 +57,4 @@ The following tiles are ignored by this schema because they are used for special
 * error
 * explore
 * hostingstack
+* new 

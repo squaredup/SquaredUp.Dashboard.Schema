@@ -200,4 +200,12 @@ message PerspectiveMatch {
 
 	// Group IDs (although singular ID in practice) to match on
 	string group_ids = 4;
+
+	// Whether to use object context for matching
+	// This value appears in early perspectives but is unused in practice and considered
+	// obsolete
+	bool object_context = 5 [deprecated=true];
+
+	// TODO: Requires documentation. This field appears to be obsolete
+	bool is_monitor_alert = 6 [deprecated=true];
 }

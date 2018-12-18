@@ -87,7 +87,7 @@ message AlertListTileConfig_Display {
 	int32 limit = 1;
 
 	// Whether to display column titles
-	bool show_tiles = 2;
+	bool show_titles = 2;
 
 	// Whether to show all alerts regardless of limit
 	bool show_all = 3;

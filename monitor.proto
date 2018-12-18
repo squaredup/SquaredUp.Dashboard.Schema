@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Monitors
+//
+//-------------------------------------------------------------------------------------
+
+// tile/monitorconfig
+message MonitorConfigTileConfig {
+    MonitorConfigTileConfig_Source source = 1;
+}
+
+message MonitorConfigTileConfig_Source {
+
+    // ID of the monitor - typically 'inherit'
+    string monitor_id = 1;
+}
+
+//-------------------------------------------------------------------------------------
+
+// tile/monitordetails
+message MonitorDetailsTileConfig {
+    MonitorDetailsTileConfig_Source source = 1;
+}
+
+message MonitorDetailsTileConfig_Source {
+
+    // ID of the monitor - typically 'inherit'
+    string monitor_id = 1;
+}
+
+message MonitorDetailsTileConfig_Display {
+
+    // Whether to display drilldowns
+    bool show_drilldown = 1;    
+}
+
+//-------------------------------------------------------------------------------------
+
+// tile/monitors
+
+message MonitorsTileConfig {
+    MonitorsTileConfig_Context context = 1; 
+    MonitorsTileConfig_Display display = 2;
+    MonitorsTileConfig_Source source = 3;
+}
+
+message MonitorsTileConfig_Context {
+
+    // TODO: Generally unsued?
+    google.protobuf.Value scope = 1;
+}
+
+message MonitorsTileConfig_Display {
+
+    // Health states (e.g. warning, error) to display
+    repeated string health_states = 1;
+
+    // Zoom level (e.g. 'column')
+    string zoom = 2;
+}
+
+message MonitorsTileConfig_Source {
+
+    // Set of monitor IDs to actually use as the source
+    repeated string monitor_ids = 1;
+}
+
+//-------------------------------------------------------------------------------------
+
+// tile/monitorstatechangehistory
+
+message MonitorStateChangeHistoryTileConfig {
+
+    // TODO: No known configuration fields
+}
