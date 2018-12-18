@@ -2,6 +2,8 @@
 
 ## TODO
 * Timeframe is duplicated and only supports 'type'
+* Traversal mode and 'type' on scope is shared across many tiles
+* 'zoom' is supported for display of most tiles
 
 ## Tiles
 
@@ -42,7 +44,6 @@
 * status-block
 * status-donut
 * text
-* vada
 * visio
 * webapi-as-scalar
 * webapi-as-table
@@ -61,3 +62,4 @@ The following tiles are ignored by this schema because they are used for special
 * explore
 * hostingstack
 * new 
+* vada

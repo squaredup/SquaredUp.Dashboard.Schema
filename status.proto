@@ -1,0 +1,154 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Status tile
+//
+//-------------------------------------------------------------------------------------
+// tile/status
+
+message StatusTileConfg {
+    StatusTileConfg_Context context = 1;
+    StatusTileConfg_Source source = 2;
+    StatusTileConfg_Display display = 3;
+}
+
+message StatusTileConfg_Context {
+    // Always empty
+}
+
+message StatusTileConfg_Scope {
+    
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+    string classId = 3;
+    
+    // Can be children or parents
+    string type = 4;
+}
+
+message StatusTileConfg_Source {
+    StatusTileConfg_Scope scope = 1;
+}
+
+message StatusTileConfg_Display {
+    string label = 1;
+    string sublabel = 2;
+    StatusTileConfg_Display_SortKey group = 3;
+    StatusTileConfg_Display_SortKey sort = 4;
+    string custom_label = 5;
+
+    // e.g. 'column'
+    string zoom = 6;
+}
+
+message StatusTileConfg_Display_SortKey {
+    string property = 1;
+
+    // e.g. asc, desc
+    string order = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/status-block
+
+message StatusBlockTileConfig {
+    StatusBlockTileConfig_Context context = 1;
+    StatusBlockTileConfig_Source source = 2;
+    StatusBlockTileConfig_Display display = 3;
+}
+
+message StatusBlockTileConfig_Context {
+    // Always empty
+}
+
+message StatusBlockTileConfig_Scope {
+    
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+    string classId = 3;
+    
+    // Can be children or parents
+    string type = 4;
+}
+
+message StatusBlockTileConfig_Source {
+    StatusBlockTileConfig_Scope scope = 1;
+}
+
+message StatusBlockTileConfig_Display {
+    string label = 1;
+    int32 columns = 2;
+    int32 height = 3;
+    double fontsize = 4;  
+    string sublabel = 5;
+    StatusBlockTileConfig_Display_SortKey group = 6;
+    StatusBlockTileConfig_Display_SortKey sort = 7;
+    string custom_label = 8;
+    string sublabel_custom_label = 9;
+
+    // e.g. 'column'
+    string zoom = 10;
+}
+
+message StatusBlockTileConfig_Display_SortKey {
+    string property = 1;
+
+    // e.g. asc, desc
+    string order = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/status-donut
+
+message StatusDonutTileConfig {
+    StatusDonutTileConfig_Context context = 1;
+    StatusDonutTileConfig_Source source = 2;
+    StatusDonutTileConfig_Display display = 3;
+}
+
+message StatusDonutTileConfig_Context {
+    // Always empty
+}
+
+message StatusDonutTileConfig_Scope {
+    
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+    string classId = 3;
+    
+    // Can be children or parents
+    string type = 4;
+}
+
+message StatusDonutTileConfig_Source {
+    StatusDonutTileConfig_Scope scope = 1;
+}
+
+message StatusDonutTileConfig_Display {
+    // e.g. fill
+    string size_mode = 1;
+
+    double legend_scale = 2;
+    bool show_legend = 3;
+    string legend_position = 4;
+}

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Visio tile
+//
+//-------------------------------------------------------------------------------------
+// tile/visio
+
+message VisioTileConfig {
+    VisioTileConfig_Context context = 1;
+    VisioTileConfig_Source source = 2;
+    VisioTileConfig_Display display = 3;
+}
+
+message VisioTileConfig_Context {
+    // Always empty
+}
+
+message VisioTileConfig_Source {
+    VisioTileConfig_Scope scope = 1;
+}
+
+message VisioTileConfig_Scope {
+    
+	// Group ID of the scope
+	string group_id = 1;
+
+	// Multiple specific object IDs
+	repeated string object_ids = 2;
+
+	// A specific class ID
+    string classId = 3;
+    
+    // Can be children or parents
+    string type = 4;
+}
+
+message VisioTileConfig_Display {
+    string behavior = 1;
+    string iconpositionx = 2;
+    string iconpositiony = 3;
+    double iconsize = 4;
+    string path = 5;
+
+    // Comma-separate hex codes of colour for matching
+    string colormatch = 6;
+}
