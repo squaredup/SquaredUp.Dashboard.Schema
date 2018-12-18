@@ -47,7 +47,6 @@
 * visio
 * webapi-as-scalar
 * webapi-as-table
-* welcome
 
 ### Special purpose
 The following tiles are ignored by this schema because they are used for special/isolated cases and are not typically saved to dashboard JSON (or they have no actual configuration)
@@ -63,3 +62,4 @@ The following tiles are ignored by this schema because they are used for special
 * hostingstack
 * new 
 * vada
+* welcome 

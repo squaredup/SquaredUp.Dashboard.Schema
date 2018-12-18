@@ -35,3 +35,116 @@ message WebContentTileConfig_Display {
 	// Literal HTML content, if specified
 	string content = 7;
 }
+
+//-------------------------------------------------------------------------------------
+// tile/webapi-as-scalar
+
+message WebApiAsScalarTileConfig {
+	WebApiAsScalarTileConfig_Context context = 1;
+	WebApiAsScalarTileConfig_Source source = 2;
+	WebApiAsScalarTileConfig_Display display = 3;
+}
+
+message WebApiAsScalarTileConfig_Context {
+	// Empty
+}
+
+message WebApiAsScalarTileConfig_Source {
+
+	// Typically "signing"
+	string _security = 1;
+
+	// GET or POST
+	string method = 2;
+
+	string provider = 3;
+
+	string url = 4;
+
+	// Keypath from response
+	string keypath = 5;
+
+	repeated WebApiAsScalarTileConfig_Source_Header headers = 6;
+	repeated WebApiAsScalarTileConfig_Source_Data data = 7;
+}
+
+message WebApiAsScalarTileConfig_Source_Header {
+	string key = 1;
+	string value = 2;
+}
+
+message WebApiAsScalarTileConfig_Source_Data {
+	string key = 1;
+	string value = 2;
+}
+
+message WebApiAsScalarTileConfig_Display {
+	double fontsize = 1;
+	bool coerce_object = 2;
+	string unit = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/webapi-as-table
+
+message WebApiAsTableTileConfig {
+	WebApiAsTableTileConfig_Context context = 1;
+	WebApiAsTableTileConfig_Source source = 2;
+	WebApiAsTableTileConfig_Display display = 3;
+}
+
+message WebApiAsTableTileConfig_Context {
+	// Empty
+}
+
+message WebApiAsTableTileConfig_Source {
+
+	// Typically "signing"
+	string _security = 1;
+
+	// GET or POST
+	string method = 2;
+
+	string provider = 3;
+
+	string url = 4;
+
+	// Keypath from response
+	string keypath = 5;
+
+	repeated WebApiAsTableTileConfig_Source_Header headers = 6;
+	repeated WebApiAsTableTileConfig_Source_Data data = 7;
+}
+
+message WebApiAsTableTileConfig_Source_Header {
+	string key = 1;
+	string value = 2;
+}
+
+message WebApiAsTableTileConfig_Source_Data {
+	string key = 1;
+	string value = 2;
+}
+
+message WebApiAsTableTileConfig_Display {
+	bool show_headers = 1;
+	  
+	// Column template overrides
+    // name -> override data
+    map<string, WebApiAsTableTileConfig_ColumnOverride> column_overrides = 2;
+
+    // Custom columns
+    // internal name (e.g. custom_column) -> data key path
+    map<string, string> custom_columns = 3;
+
+    // List/order of each column
+	repeated string columns = 4;
+	
+	bool autohide = 5;
+
+	string row_link = 6;
+}
+
+message WebApiAsTableTileConfig_ColumnOverride {
+    string template = 1;
+}
