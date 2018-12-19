@@ -102,4 +102,7 @@ message StatusDonutTileConfig_Display {
     double legend_scale = 2;
     bool show_legend = 3;
     string legend_position = 4;
+
+    // e.g. 'column'
+    string zoom = 5;
 }

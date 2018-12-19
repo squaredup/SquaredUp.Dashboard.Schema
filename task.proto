@@ -105,6 +105,9 @@ message ScomTaskAsTableTileConfig_Display {
 
     // List/order of each column
     repeated string columns = 6;
+
+    // e.g. 'column'
+    string zoom = 7;
 }
 
 message ScomTaskAsTableTileConfig_ColumnOverride {

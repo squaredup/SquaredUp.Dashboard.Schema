@@ -84,6 +84,9 @@ message WebApiAsScalarTileConfig_Display {
 	double fontsize = 1;
 	bool coerce_object = 2;
 	string unit = 3;
+
+    // e.g. 'column'
+    string zoom = 4;
 }
 
 //-------------------------------------------------------------------------------------
@@ -145,6 +148,9 @@ message WebApiAsTableTileConfig_Display {
 	bool autohide = 5;
 
 	string row_link = 6;
+
+    // e.g. 'column'
+    string zoom = 7;
 }
 
 message WebApiAsTableTileConfig_ColumnOverride {

@@ -20,6 +20,9 @@ message MonitorConfigTileConfig_Source {
 
     // ID of the monitor - typically 'inherit'
     string monitor_id = 1;
+
+    // e.g. 'column'
+    string zoom = 2;
 }
 
 //-------------------------------------------------------------------------------------
@@ -40,6 +43,9 @@ message MonitorDetailsTileConfig_Display {
 
     // Whether to display drilldowns
     bool show_drilldown = 1;    
+    
+    // e.g. 'column'
+    string zoom = 2;
 }
 
 //-------------------------------------------------------------------------------------

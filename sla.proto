@@ -39,4 +39,7 @@ message SlaTileConfig_Display {
     string label = 7;
     string custom_label = 8;
     bool inline = 9;
+
+    // e.g. 'column'
+    string zoom = 10;
 }

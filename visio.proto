@@ -32,4 +32,7 @@ message VisioTileConfig_Display {
 
     // Comma-separate hex codes of colour for matching
     string colormatch = 6;
+    
+    // e.g. 'column'
+    string zoom = 7;
 }

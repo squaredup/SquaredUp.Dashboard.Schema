@@ -24,6 +24,9 @@ message DynamicTableTileConfig_Display {
 
 	// Perspective to display (if any)
 	DynamicTableTileConfig_Display_Perspective perspective = 1;
+
+    // e.g. 'column'
+    string zoom = 2;
 }
 
 message DynamicTableTileConfig_Display_Perspective {
@@ -64,6 +67,9 @@ message MatrixTileConfig_Display {
 	repeated MatrixTile_Column columns = 4;
 
 	MatrixTileConfig_Display_Perspective perspective = 5;
+
+    // e.g. 'column'
+    string zoom = 6;
 }
 
 message MatrixTileConfig_Display_Perspective {
@@ -131,13 +137,15 @@ message CellTile_Bar_Config_Display {
 
 message CellTile_Sla_Config {
 	CellTile_Sla_Config_Source source = 1;
-	repeated MatrixTile_Transform transforms = 3;
+	repeated MatrixTile_Transform transforms = 2;
 
 }
 message CellTile_Sla_Config_Source {
 
 	// ID of the service level object to use for the SLA
 	string slo_id = 1;
+
+	CommonTimeframe timeframe = 2;
 }
 
 //-------------------------------------------------------------------------------------
@@ -196,6 +204,7 @@ message CellTile_Status_Config {
 message CellTile_Status_Display {
 	bool show_status_icon = 1;
 	string label_template = 2;
+	string cell_width = 3;
 }
 
 //-------------------------------------------------------------------------------------
@@ -229,4 +238,23 @@ message CellTile_TimeseriesBlocks_Display {
 message CellTile_TimeseriesBlocks_Source {
 	repeated string monitor_ids = 1;
 	CommonTimeframe timeframe = 4;
+}
+
+//-------------------------------------------------------------------------------------
+// celltile/monitor-status
+
+message CellTile_MonitorStatus_Config {
+	CellTile_MonitorStatus_Source source = 1;
+	CellTile_MonitorStatus_Display display = 2;
+	repeated MatrixTile_Transform transforms = 3;
+}
+
+message CellTile_MonitorStatus_Source {
+	repeated string monitor_ids = 1;
+}
+
+message CellTile_MonitorStatus_Display {
+	bool full_width = 1;
+	string link_template = 2;
+	string cell_width = 3;
 }

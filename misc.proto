@@ -4,6 +4,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
 import "scope.proto";
+import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -29,10 +30,20 @@ message KnowledgeEditorTileConfig_Source {
 
 message TextTileConfig {
 	TextTileConfig_Display display = 1;
+
+	// Some instances of this tile supply an empty (redundant) context
+	CommonContext context = 2;
+
+	// And the same for source...
+	TextTileConfig_Source source = 3;
 }
 
 message TextTileConfig_Display {
 	string content_template = 1;
+}
+
+message TextTileConfig_Source {
+
 }
 
 //-------------------------------------------------------------------------------------

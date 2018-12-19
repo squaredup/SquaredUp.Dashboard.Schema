@@ -27,4 +27,6 @@ message CommonScope {
 	
 	// Whether to bring extended properties back
 	bool extended_properties = 7;
+
+	bool toplevelhosts = 8;
 }

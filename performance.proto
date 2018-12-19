@@ -12,17 +12,33 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //
 //-------------------------------------------------------------------------------------
 
-// tile/allscomperf
-message AllScomPerfTileConfig {
+// Display settings common to most performance graphs
+message CommonPerformanceDisplay {
+	// e.g. fit
+	string range = 1;
 
-	AllScomPerfTileConfig_Source source = 1;
+	// e.g. object, counter
+	repeated string unitkey = 2;
 
-	AllScomPerfTileConfig_Display display = 2;
+	double height = 3;
 
+	string label = 4;
+
+	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+
+	double rangemax = 8;
+	double rangemin = 9;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 10;
+
+	bool show_key = 11;
 }
 
-message AllScomPerfTileConfig_Source {
-
+message CommonPerformanceSource {
 	// default is 'average'
 	string aggregate_value_type = 1;
 
@@ -42,57 +58,33 @@ message AllScomPerfTileConfig_Source {
 
 	// Typically * (any)
 	string countername = 5;
+
+	// e.g. "_Total"
+	string instancename = 6;
+
+	// Unknown purpose
+	bool desc = 7;
+
+	// Whether to fetch Top N items 
+	uint32 topn = 8;
+
+    // e.g. 'column'
+    string zoom = 9;
 }
 
-message AllScomPerfTileConfig_Display {
-
-	// Default is 'fit'
-	string range = 1;
+// tile/allscomperf
+message AllScomPerfTileConfig {
+	CommonPerformanceSource source = 1;
+	CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-bar
 
 message ScomPerfAsBarTileConfig {
-	ScomPerfAsBarTileConfig_Source source = 1;
-	ScomPerfAsBarTileConfig_Display display = 2;
+	CommonPerformanceSource source = 1;
+	CommonPerformanceDisplay display = 2;
 	ScomPerfAsBarTileConfig_Context context = 3;
-}
-
-message ScomPerfAsBarTileConfig_Source {
-	// default is 'average'
-	string aggregate_value_type = 1;
-
-	// default is 'raw'
-	string resolution = 2; 
-
-	CommonTimeframe timeframe = 3;
-
-	// e.g. "LogicalDisk"
-	string objectname = 4;  
-
-	// e.g. "% Free Space"
-	string countername = 5;
-
-	// e.g. "_Total"
-	string instancename = 6;
-}
-
-message ScomPerfAsBarTileConfig_Display {
-	string label_template = 1;
-
-	// e.g. percentage
-	string range = 2;	
-
-	// !! Naming convention inconsistency here !!
-	repeated string unitkey = 3;
-
-	// e.g. auto
-	string label = 4;
-
-	double height = 5;
-
-	string link_template = 6;
 }
 
 message ScomPerfAsBarTileConfig_Context {
@@ -104,24 +96,8 @@ message ScomPerfAsBarTileConfig_Context {
 
 message ScomPerfAsHeatmapTileConfig {
 	ScomPerfAsHeatmapTileConfig_Context context = 1;
-	ScomPerfAsHeatmapTileConfig_Source source = 2;
+	CommonPerformanceSource source = 2;
 	ScomPerfAsHeatmapTileConfig_Display display = 3;
-}
-
-message ScomPerfAsHeatmapTileConfig_Source {
-	string aggregate_value_type = 1;
-
-	// default is 'raw'
-	string resolution = 2; 
-
-	// e.g. "LogicalDisk"
-	string objectname = 3;  
-
-	// e.g. "% Free Space"
-	string countername = 4;
-
-	// e.g. "_Total"
-	string instancename = 5;
 }
 
 message ScomPerfAsHeatmapTileConfig_Context {
@@ -134,11 +110,15 @@ message ScomPerfAsHeatmapTileConfig_Display {
 	uint32 red = 2;
 	uint32 green = 3;
 	uint32 blue = 4;
+	uint32 alpha = 5;
 
 	// e.g. properties.isVirtualNode
-	string size_property = 5;
+	string size_property = 6;
 
-	double height = 6;
+	double height = 7;
+	
+    // e.g. 'column'
+    string zoom = 8;
 }
 
 //-------------------------------------------------------------------------------------
@@ -146,82 +126,20 @@ message ScomPerfAsHeatmapTileConfig_Display {
 
 message ScomPerfAsLineGraphTileConfig {
 	ScomPerfAsLineGraphTileConfig_Context context = 1;
-	ScomPerfAsLineGraphTileConfig_Source source = 2;
-	ScomPerfAsLineGraphTileConfig_Display display = 3;
-}
-
-message ScomPerfAsLineGraphTileConfig_Source {
-	string aggregate_value_type = 1;
-
-	// default is 'raw'
-	string resolution = 2; 
-
-	// e.g. "LogicalDisk"
-	string objectname = 3;  
-
-	// e.g. "% Free Space"
-	string countername = 4;
-
-	string instancename = 5;
-
-	CommonTimeframe timeframe = 6;
+	CommonPerformanceSource source = 2;
+	CommonPerformanceDisplay display = 3;
 }
 
 message ScomPerfAsLineGraphTileConfig_Context {
 	CommonScope scope = 1;
 }
 
-message ScomPerfAsLineGraphTileConfig_Display {
-
-	// e.g. fit
-	string range = 1;
-
-	// e.g. object, counter
-	repeated string unit_key = 2;
-
-	double height = 3;
-
-	string label = 4;
-
-	string custom_label = 5;
-
-	string link_template = 6;
-	string label_template = 7;
-
-	double rangemax = 8;
-	double rangemin = 9;
-}
-
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-line-graph-report
 
 message ScomPerfAsLineGraphReportTileConfig {
-	ScomPerfAsLineGraphReportTileConfig_Source source = 1;
-	ScomPerfAsLineGraphReportTileConfig_Display display = 2;
-}
-
-message ScomPerfAsLineGraphReportTileConfig_Source {
-	string aggregate_value_type = 1;
-
-	// default is 'raw'
-	string resolution = 2; 
-
-	// e.g. "LogicalDisk"
-	string objectname = 3;  
-
-	// e.g. "% Free Space"
-	string countername = 4;
-
-	string instancename = 5;
-
-	CommonTimeframe timeframe = 6;
-}
-
-message ScomPerfAsLineGraphReportTileConfig_Display {
-	
-	// e.g. fit
-	string range = 1;
-	double height = 2;
+	CommonPerformanceSource source = 1;
+	CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
@@ -229,56 +147,10 @@ message ScomPerfAsLineGraphReportTileConfig_Display {
 
 message ScomPerfAsSparklinesTileConfig {
 	ScomPerfAsSparklinesTileConfig_Context context = 1;
-	ScomPerfAsSparklinesTileConfig_Source source = 2;
-	ScomPerfAsSparklinesTileConfig_Display display = 3;
+	CommonPerformanceSource source = 2;
+	CommonPerformanceDisplay display = 3;
 }
 
 message ScomPerfAsSparklinesTileConfig_Context {
 	CommonScope scope = 1;
-}
-
-message ScomPerfAsSparklinesTileConfig_Source {
-	string aggregate_value_type = 1;
-
-	// default is 'raw'
-	string resolution = 2; 
-
-	// e.g. "LogicalDisk"
-	string objectname = 3;  
-
-	// e.g. "% Free Space"
-	string countername = 4;
-
-	string instancename = 5;
-
-	CommonTimeframe timeframe = 6;
-}
-
-message ScomPerfAsSparklinesTileConfig_Display {
-
-	string label_template = 1;
-
-	// e.g. percentage
-	string range = 2;	
-	
-	// !! Naming convention inconsistency here !!
-	repeated string unitkey = 3;
-
-	// e.g. auto
-	string label = 4;
-
-	// !! Naming convention inconsistency here !!
-	//
-	double rangemin = 5;
-
-	double rangemax = 6;
-
-	string custom_label = 7;
-	
-	// Unknown/unverified content
-	map<string, google.protobuf.Value> metadata = 8;
-
-	double height = 9;
-
-	string link_template = 10;
 }

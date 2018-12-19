@@ -66,6 +66,9 @@ message AlertListTileConfig_Display {
 
 	// Column names to display in the list
 	repeated string columns = 4;
+
+    // e.g. 'column'
+    string zoom = 5;
 }
 
 //-------------------------------------------------------------------------------------
@@ -103,6 +106,9 @@ message AlertDonutTileConfig_Display {
 
 	// How groups are filtered - e.g. default is "Severity"
 	string grouping_filter_property = 7;
+	
+    // e.g. 'column'
+    string zoom = 8;
 }
 
 // Mappings from status names to display settings such as colour

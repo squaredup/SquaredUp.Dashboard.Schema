@@ -32,6 +32,9 @@ message SqlAsScalarTileConfig_Display {
     double fontsize = 1;
     bool coerce_object = 2;
     string unit = 3;
+
+    // e.g. 'column'
+    string zoom = 4;
 }
 
 //-------------------------------------------------------------------------------------
@@ -73,6 +76,9 @@ message SqlAsTableTileConfig_Display {
 
     // List/order of each column
     repeated string columns = 6;
+    
+    // e.g. 'column'
+    string zoom = 7;
 }
 
 message SqlAsTableTileConfig_ColumnOverride {
