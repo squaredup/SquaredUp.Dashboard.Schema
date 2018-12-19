@@ -73,6 +73,9 @@ message ScomPerfAsBarTileConfig_Source {
 
 	// e.g. "% Free Space"
 	string countername = 5;
+
+	// e.g. "_Total"
+	string instancename = 6;
 }
 
 message ScomPerfAsBarTileConfig_Display {
@@ -81,10 +84,15 @@ message ScomPerfAsBarTileConfig_Display {
 	// e.g. percentage
 	string range = 2;	
 
-	repeated string unit_key = 3;
+	// !! Naming convention inconsistency here !!
+	repeated string unitkey = 3;
 
 	// e.g. auto
 	string label = 4;
+
+	double height = 5;
+
+	string link_template = 6;
 }
 
 message ScomPerfAsBarTileConfig_Context {
@@ -112,6 +120,7 @@ message ScomPerfAsHeatmapTileConfig_Source {
 	// e.g. "% Free Space"
 	string countername = 4;
 
+	// e.g. "_Total"
 	string instancename = 5;
 }
 
@@ -175,6 +184,12 @@ message ScomPerfAsLineGraphTileConfig_Display {
 	string label = 4;
 
 	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+
+	double rangemax = 8;
+	double rangemin = 9;
 }
 
 //-------------------------------------------------------------------------------------
@@ -245,8 +260,9 @@ message ScomPerfAsSparklinesTileConfig_Display {
 
 	// e.g. percentage
 	string range = 2;	
-
-	repeated string unit_key = 3;
+	
+	// !! Naming convention inconsistency here !!
+	repeated string unitkey = 3;
 
 	// e.g. auto
 	string label = 4;
@@ -261,4 +277,8 @@ message ScomPerfAsSparklinesTileConfig_Display {
 	
 	// Unknown/unverified content
 	map<string, google.protobuf.Value> metadata = 8;
+
+	double height = 9;
+
+	string link_template = 10;
 }

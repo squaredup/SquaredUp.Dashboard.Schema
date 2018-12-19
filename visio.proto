@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/struct.proto";
 import "scope.proto";
+import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -13,13 +14,9 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 // tile/visio
 
 message VisioTileConfig {
-    VisioTileConfig_Context context = 1;
+    CommonContext context = 1;
     VisioTileConfig_Source source = 2;
     VisioTileConfig_Display display = 3;
-}
-
-message VisioTileConfig_Context {
-    // Always empty
 }
 
 message VisioTileConfig_Source {

@@ -38,4 +38,5 @@ message SlaTileConfig_Display {
     double max = 6;
     string label = 7;
     string custom_label = 8;
+    bool inline = 9;
 }

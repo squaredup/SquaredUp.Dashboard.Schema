@@ -3,6 +3,8 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
+import "scope.proto";
+
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
 //-------------------------------------------------------------------------------------
@@ -23,12 +25,30 @@ message KnowledgeEditorTileConfig_Source {
 }
 
 //-------------------------------------------------------------------------------------
-
 // tile/text
+
 message TextTileConfig {
 	TextTileConfig_Display display = 1;
 }
 
 message TextTileConfig_Display {
 	string content_template = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// region/newscomcontext
+
+message NewScomContextRegion {
+
+	// region/newscomcontext
+	string _type = 1;
+
+	NewScomContextRegionConfig config = 2;
+
+	// Expected to be a root column or layout which nests further tiles
+	google.protobuf.Value content = 3;
+}
+
+message NewScomContextRegionConfig {
+	CommonScope scope = 1;
 }

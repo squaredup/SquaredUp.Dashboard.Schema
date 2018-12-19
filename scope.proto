@@ -23,5 +23,8 @@ message CommonScope {
     string type = 5;
 
     // Traversal depth eg. recursive
-    string traversal_depth = 6;
+	string traversal_depth = 6;
+	
+	// Whether to bring extended properties back
+	bool extended_properties = 7;
 }

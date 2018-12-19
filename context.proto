@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/wrappers.proto";
+
+import "scope.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+message CommonContext {
+	bool alerts = 1;
+	bool extended_properties = 2;
+	CommonScope scope = 3;
+	CommonScope source = 4;
+}
