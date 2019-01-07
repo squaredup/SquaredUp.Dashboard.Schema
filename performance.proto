@@ -18,7 +18,7 @@ message CommonPerformanceDisplay {
 	string range = 1;
 
 	// e.g. object, counter
-	repeated string unitkey = 2;
+	repeated string unit_key = 2;
 
 	double height = 3;
 

@@ -63,3 +63,25 @@ message NewScomContextRegion {
 message NewScomContextRegionConfig {
 	CommonScope scope = 1;
 }
+
+//-------------------------------------------------------------------------------------
+// tile/button
+
+message ButtonTileConfig {
+	ButtonTileConfig_Display display = 1;
+}
+
+message ButtonTileConfig_Display {
+	string icon = 1;
+	string url = 2;
+	string class = 3;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/alertcontext
+
+message AlertContextTileConfig {
+
+	// No known fields
+
+}
