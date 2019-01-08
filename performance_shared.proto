@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "scope.proto";
+import "timeframe.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+// Display settings common to most performance graphs
+message CommonPerformanceDisplay {
+	// e.g. fit
+	string range = 1;
+
+	// e.g. object, counter
+	repeated string unit_key = 2;
+
+	double height = 3;
+
+	string label = 4;
+
+	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+
+	double rangemax = 8;
+	double rangemin = 9;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 10;
+
+	bool show_key = 11;
+}
+
+message CommonPerformanceSource {
+	// default is 'average'
+	string aggregate_value_type = 1;
+
+	// default is 'raw'
+	string resolution = 2; 
+
+	CommonTimeframe timeframe = 3;
+
+	// These settings are shared/used by other performance tiles (and are not specified by allscomperf's defaults)
+	// - but in practice these values are set on various dashboards (e.g. all-performance.json) and are specified
+	// here for completeness as optional values
+	//
+	// !! Naming conventions here are broken !!
+	//
+	// Typically * (any)
+	string objectname = 4;  
+
+	// Typically * (any)
+	string countername = 5;
+
+	// e.g. "_Total"
+	string instancename = 6;
+
+	// Unknown purpose
+	bool desc = 7;
+
+	// Whether to fetch Top N items 
+	uint32 topn = 8;
+
+	// e.g. 'column'
+	string zoom = 9;
+}

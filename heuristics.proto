@@ -1,0 +1,227 @@
+syntax = "proto3";
+
+import "google/protobuf/struct.proto";
+import "timeframe.proto";
+import "scope.proto";
+import "performance_shared.proto";
+import "context.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+
+//-------------------------------------------------------------------------------------
+//
+//  Heuristics to support non-conformant and bugged JSON
+//
+//
+//
+//-------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------
+//
+//  alert-list
+//
+//-------------------------------------------------------------------------------------
+
+// Duplicate of alert-list (see alert.proto) but with showTitles as a string
+//
+// Non-compliant but product will accept
+//
+
+message Heuristic1_AlertListTileConfig {
+
+	Heuristic1_AlertListTileConfig_Source source = 1;
+
+	Heuristic1_AlertListTileConfig_Display display = 2;
+
+	// TODO: Typing
+	google.protobuf.Value context = 3;
+}
+
+message Heuristic1_AlertListTileConfig_Source {
+
+	CommonScope scope = 1;
+
+	// Set of severity types - encoded as integers in strings (e.g. "1")
+	repeated string severities = 2;
+
+	// Set of priority types - encoded as integers in strings (e.g. "1")
+	repeated string priorities = 3;
+
+	// Alert sources - typically "monitor" or "rule" (or both)
+	repeated string sources = 4;
+
+	// Alert owner (filter). Typically "any" or "me"
+	//
+	// This is encoded as 'value' because it arbitrarily switches between 
+	// a string or an array with only one element
+	google.protobuf.Value owner = 5;
+
+	// Set of states permitted - encoded as integers in strings (e.g. "-1")
+	//
+	// Typical value appears to be any (open) encoded as -1
+	repeated string states = 6;
+
+	// Timeframe of the alert display
+	CommonTimeframe timeframe = 7;
+}
+
+// Display options for alert list
+message Heuristic1_AlertListTileConfig_Display {
+
+	// Max alerts to display
+	int32 limit = 1;
+
+	// Whether to display column titles
+	string show_titles = 2;
+
+	// Whether to show all alerts regardless of limit
+	bool show_all = 3;
+
+	// Column names to display in the list
+	repeated string columns = 4;
+
+    // e.g. 'column'
+    string zoom = 5;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  scomperf-*
+//
+//-------------------------------------------------------------------------------------
+
+// These tiles require unitKey but 'unitkey' is a common misuse of the property
+//
+
+message Heuristic2_CommonPerformanceDisplay {
+	// e.g. fit
+	string range = 1;
+
+	// unitkey instead of unitKey
+	repeated string unitkey = 2;
+
+	double height = 3;
+
+	string label = 4;
+
+	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+
+	double rangemax = 8;
+	double rangemin = 9;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 10;
+
+	bool show_key = 11;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-bar
+
+message Heuristic2_ScomPerfAsBarTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic2_CommonPerformanceDisplay display = 2;
+	Heuristic2_ScomPerfAsBarTileConfig_Context context = 3;
+}
+
+message Heuristic2_ScomPerfAsBarTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-heatmap
+
+message Heuristic2_ScomPerfAsHeatmapTileConfig {
+	Heuristic2_ScomPerfAsHeatmapTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic2_ScomPerfAsHeatmapTileConfig_Display display = 3;
+}
+
+message Heuristic2_ScomPerfAsHeatmapTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+message Heuristic2_ScomPerfAsHeatmapTileConfig_Display {
+	double size_scale = 1;
+
+	uint32 red = 2;
+	uint32 green = 3;
+	uint32 blue = 4;
+	uint32 alpha = 5;
+
+	// e.g. properties.isVirtualNode
+	string size_property = 6;
+
+	double height = 7;
+	
+    // e.g. 'column'
+    string zoom = 8;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph
+
+message Heuristic2_ScomPerfAsLineGraphTileConfig {
+	Heuristic2_ScomPerfAsLineGraphTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic2_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic2_ScomPerfAsLineGraphTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph-report
+
+message Heuristic2_ScomPerfAsLineGraphReportTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic2_CommonPerformanceDisplay display = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-spark-lines
+
+message Heuristic2_ScomPerfAsSparklinesTileConfig {
+	Heuristic2_ScomPerfAsSparklinesTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic2_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic2_ScomPerfAsSparklinesTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  Visio
+//
+//-------------------------------------------------------------------------------------
+
+// iconsize is often incorrectly specified as string
+
+message Heuristic3_VisioTileConfig {
+    CommonContext context = 1;
+    Heuristic3_VisioTileConfig_Source source = 2;
+    Heuristic3_VisioTileConfig_Display display = 3;
+}
+
+message Heuristic3_VisioTileConfig_Source {
+    CommonScope scope = 1;
+}
+
+message Heuristic3_VisioTileConfig_Display {
+   string behavior = 1;
+    string iconpositionx = 2;
+    string iconpositiony = 3;
+
+    // Can be specified as string for no particular reason
+    string iconsize = 4;
+
+    string path = 5;
+    string colormatch = 6;
+    string zoom = 7;
+}
