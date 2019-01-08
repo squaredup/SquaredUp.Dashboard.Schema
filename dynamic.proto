@@ -6,6 +6,7 @@ import "google/protobuf/wrappers.proto";
 import "scope.proto";
 import "context.proto";
 import "timeframe.proto";
+import "performance_shared.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -100,16 +101,11 @@ message MatrixTile_Transform {
 
 // celltile/scomperf-as-sparkline
 message CellTile_ScomPerfAsSparkline_Config {
-	CellTile_ScomPerfAsSparkline_Config_Source source = 1;
+	CommonPerformanceSource source = 1;
 	CellTile_ScomPerfAsSparkline_Config_Display display = 2;
 	repeated MatrixTile_Transform transforms = 3;
 }
-message CellTile_ScomPerfAsSparkline_Config_Source {
 
-	// !! Naming conventions here are broken !!
-	string objectname = 1;
-	string countername = 2;
-}
 message CellTile_ScomPerfAsSparkline_Config_Display {
 	string label_template = 1;
 }
@@ -117,17 +113,11 @@ message CellTile_ScomPerfAsSparkline_Config_Display {
 //-------------------------------------------------------------------------------------
 // celltile/bar
 message CellTile_Bar_Config {
-	CellTile_Bar_Config_Source source = 1;
+	CommonPerformanceSource source = 1;
 	CellTile_Bar_Config_Display display = 2;
 	repeated MatrixTile_Transform transforms = 3;
-
 }
-message CellTile_Bar_Config_Source {
 
-	// !! Naming conventions here are broken !!
-	string objectname = 1;
-	string countername = 2;
-}
 message CellTile_Bar_Config_Display {
 	string value_template = 1;
 }

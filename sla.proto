@@ -3,6 +3,7 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 import "scope.proto";
 import "timeframe.proto";
+import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -13,13 +14,9 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //-------------------------------------------------------------------------------------
 
 message SlaTileConfig {
-    SlaTileConfig_Context context = 1;
+    CommonContext context = 1;
     SlaTileConfig_Source source = 2;
     SlaTileConfig_Display display = 3;
-}
-
-message SlaTileConfig_Context {
-    CommonScope scope = 1;
 }
 
 message SlaTileConfig_Source {

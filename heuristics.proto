@@ -12,6 +12,9 @@ option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 //
 //  Heuristics to support non-conformant and bugged JSON
 //
+// This file duplicates many other schemas to provide compatibility shims
+//
+// Omit the creation/use of this schema for future, highly-conformant JSON
 //
 //
 //-------------------------------------------------------------------------------------
@@ -224,4 +227,228 @@ message Heuristic3_VisioTileConfig_Display {
     string path = 5;
     string colormatch = 6;
     string zoom = 7;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  scomperf-*
+//
+//-------------------------------------------------------------------------------------
+
+// These tiles require showKey but it may be provided as a string
+//
+
+message Heuristic4_CommonPerformanceDisplay {
+	// e.g. fit
+	string range = 1;
+
+	// unitkey instead of unitKey
+	repeated string unit_key = 2;
+
+	double height = 3;
+
+	string label = 4;
+
+	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+
+	double rangemax = 8;
+	double rangemin = 9;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 10;
+
+	// Incorrectly provided as string
+	string show_key = 11;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-bar
+
+message Heuristic4_ScomPerfAsBarTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic4_CommonPerformanceDisplay display = 2;
+	Heuristic4_ScomPerfAsBarTileConfig_Context context = 3;
+}
+
+message Heuristic4_ScomPerfAsBarTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-heatmap
+
+message Heuristic4_ScomPerfAsHeatmapTileConfig {
+	Heuristic4_ScomPerfAsHeatmapTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic4_ScomPerfAsHeatmapTileConfig_Display display = 3;
+}
+
+message Heuristic4_ScomPerfAsHeatmapTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+message Heuristic4_ScomPerfAsHeatmapTileConfig_Display {
+	double size_scale = 1;
+
+	uint32 red = 2;
+	uint32 green = 3;
+	uint32 blue = 4;
+	uint32 alpha = 5;
+
+	// e.g. properties.isVirtualNode
+	string size_property = 6;
+
+	double height = 7;
+	
+    // e.g. 'column'
+    string zoom = 8;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph
+
+message Heuristic4_ScomPerfAsLineGraphTileConfig {
+	Heuristic4_ScomPerfAsLineGraphTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic4_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic4_ScomPerfAsLineGraphTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph-report
+
+message Heuristic4_ScomPerfAsLineGraphReportTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic4_CommonPerformanceDisplay display = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-spark-lines
+
+message Heuristic4_ScomPerfAsSparklinesTileConfig {
+	Heuristic4_ScomPerfAsSparklinesTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic4_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic4_ScomPerfAsSparklinesTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+//
+//  scomperf-*
+//
+//-------------------------------------------------------------------------------------
+
+// rangemax and rangemin being strings
+//
+
+message Heuristic5_CommonPerformanceDisplay {
+	// e.g. fit
+	string range = 1;
+
+	// unitkey instead of unitKey
+	repeated string unit_key = 2;
+
+	double height = 3;
+
+	string label = 4;
+
+	string custom_label = 5;
+
+	string link_template = 6;
+	string label_template = 7;
+	
+	google.protobuf.Value rangemax = 8;
+	google.protobuf.Value rangemin = 9;
+	
+	// Unknown/unverified content
+	map<string, google.protobuf.Value> metadata = 10;
+
+	// Incorrectly provided as string
+	string show_key = 11;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-bar
+
+message Heuristic5_ScomPerfAsBarTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic5_CommonPerformanceDisplay display = 2;
+	Heuristic5_ScomPerfAsBarTileConfig_Context context = 3;
+}
+
+message Heuristic5_ScomPerfAsBarTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-heatmap
+
+message Heuristic5_ScomPerfAsHeatmapTileConfig {
+	Heuristic5_ScomPerfAsHeatmapTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic5_ScomPerfAsHeatmapTileConfig_Display display = 3;
+}
+
+message Heuristic5_ScomPerfAsHeatmapTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+message Heuristic5_ScomPerfAsHeatmapTileConfig_Display {
+	double size_scale = 1;
+
+	google.protobuf.Value red = 2;
+	google.protobuf.Value green = 3;
+	google.protobuf.Value blue = 4;
+	google.protobuf.Value alpha = 5;
+
+	// e.g. properties.isVirtualNode
+	string size_property = 6;
+
+	google.protobuf.Value height = 7;
+	
+    // e.g. 'column'
+    string zoom = 8;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph
+
+message Heuristic5_ScomPerfAsLineGraphTileConfig {
+	Heuristic5_ScomPerfAsLineGraphTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic5_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic5_ScomPerfAsLineGraphTileConfig_Context {
+	CommonScope scope = 1;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-line-graph-report
+
+message Heuristic5_ScomPerfAsLineGraphReportTileConfig {
+	CommonPerformanceSource source = 1;
+	Heuristic5_CommonPerformanceDisplay display = 2;
+}
+
+//-------------------------------------------------------------------------------------
+// tile/scomperf-as-spark-lines
+
+message Heuristic5_ScomPerfAsSparklinesTileConfig {
+	Heuristic5_ScomPerfAsSparklinesTileConfig_Context context = 1;
+	CommonPerformanceSource source = 2;
+	Heuristic5_CommonPerformanceDisplay display = 3;
+}
+
+message Heuristic5_ScomPerfAsSparklinesTileConfig_Context {
+	CommonScope scope = 1;
 }

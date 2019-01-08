@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 
@@ -16,6 +17,12 @@ message AzureInsightsAsScalarTileConfig {
 	AzureInsightsAsScalarTileConfig_Source source = 1;
 
 	AzureInsightsAsScalarTileConfig_Display display = 2;	
+
+	AzureInsightsAsScalarTileConfig_Context context = 3;
+}
+
+message AzureInsightsAsScalarTileConfig_Context {
+
 }
 
 message AzureInsightsAsScalarTileConfig_Source {
@@ -28,6 +35,8 @@ message AzureInsightsAsScalarTileConfig_Source {
 
 	// e.g. application/json
 	string content_type = 3;
+
+	string _security = 4;
 }
 
 message AzureInsightsAsScalarTileConfig_Display {
@@ -50,6 +59,12 @@ message AzureInsightsAsTableTileConfig {
 	AzureInsightsAsTableTileConfig_Source source = 1;
 
 	AzureInsightsAsTableTileConfig_Display display = 2;	
+
+	AzureInsightsAsTableTileConfig_Context context = 3;
+}
+
+message AzureInsightsAsTableTileConfig_Context {
+
 }
 
 message AzureInsightsAsTableTileConfig_Source {
@@ -62,6 +77,8 @@ message AzureInsightsAsTableTileConfig_Source {
 
 	// e.g. application/json
 	string content_type = 3;
+
+	string _security = 4;
 }
 
 message AzureInsightsAsTableTileConfig_Display {
@@ -81,6 +98,12 @@ message AzureLogAnalyticsAsScalarTileConfig {
 	AzureLogAnalyticsAsScalarTileConfig_Source source = 1;
 
 	AzureLogAnalyticsAsScalarTileConfig_Display display = 2;	
+
+	AzureLogAnalyticsAsScalarTileConfig_Context context = 3;
+}
+
+message AzureLogAnalyticsAsScalarTileConfig_Context {
+
 }
 
 message AzureLogAnalyticsAsScalarTileConfig_Source {
@@ -93,6 +116,8 @@ message AzureLogAnalyticsAsScalarTileConfig_Source {
 
 	// e.g. application/json
 	string content_type = 3;
+
+	string _security = 4;
 }
 
 message AzureLogAnalyticsAsScalarTileConfig_Display {
@@ -115,6 +140,12 @@ message AzureLogAnalyticsAsTableTileConfig {
 	AzureLogAnalyticsAsTableTileConfig_Source source = 1;
 
 	AzureLogAnalyticsAsTableTileConfig_Display display = 2;	
+
+	AzureLogAnalyticsAsTableTileConfig_Context context = 3;
+}
+
+message AzureLogAnalyticsAsTableTileConfig_Context {
+
 }
 
 message AzureLogAnalyticsAsTableTileConfig_Source {
@@ -127,6 +158,8 @@ message AzureLogAnalyticsAsTableTileConfig_Source {
 
 	// e.g. application/json
 	string content_type = 3;
+
+	string _security = 4;
 }
 
 message AzureLogAnalyticsAsTableTileConfig_Display {

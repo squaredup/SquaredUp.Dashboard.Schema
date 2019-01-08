@@ -26,6 +26,8 @@ message SqlAsScalarTileConfig_Source {
     // !! Inconsistent vs. naming scheme !!
     string connectionstring = 2;
     string querystring = 3;
+    
+    string contexttype = 4 [deprecated=true];
 }
 
 message SqlAsScalarTileConfig_Display {
@@ -56,6 +58,8 @@ message SqlAsTableTileConfig_Source {
     // !! Inconsistent vs. naming scheme !!
     string connectionstring = 2;
     string querystring = 3;
+
+    string contexttype = 4 [deprecated=true];
 }
 
 message SqlAsTableTileConfig_Display {
@@ -83,4 +87,5 @@ message SqlAsTableTileConfig_Display {
 
 message SqlAsTableTileConfig_ColumnOverride {
     string template = 1;
+    string display_name = 2;
 }
