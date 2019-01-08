@@ -6,6 +6,7 @@ import "google/protobuf/wrappers.proto";
 import "scope.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 message CommonContext {
 	bool alerts = 1;

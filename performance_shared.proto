@@ -5,6 +5,7 @@ import "scope.proto";
 import "timeframe.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 // Display settings common to most performance graphs
 message CommonPerformanceDisplay {

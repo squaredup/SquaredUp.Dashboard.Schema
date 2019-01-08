@@ -6,6 +6,7 @@ import "google/protobuf/wrappers.proto";
 import "context.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 //-------------------------------------------------------------------------------------
 //

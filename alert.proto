@@ -5,6 +5,7 @@ import "timeframe.proto";
 import "scope.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 //-------------------------------------------------------------------------------------
 //

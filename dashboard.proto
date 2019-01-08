@@ -3,6 +3,7 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 // Convention notes:
 // -- all of the field names become camelCased when actually used in JSON

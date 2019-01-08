@@ -6,6 +6,7 @@ import "timeframe.proto";
 import "performance_shared.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
 
 //-------------------------------------------------------------------------------------
 //
