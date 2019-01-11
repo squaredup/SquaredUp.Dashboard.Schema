@@ -78,6 +78,9 @@ message Dashboard {
 	OpenAccess open_access = 20;
 
 	DashboardHelp help = 21;
+
+	//Predicates for explicitly making a perspective hidden (contrast with 'match')
+	repeated PerspectiveMatch hidden_matches = 22;
 }
 
 // Custom action attached to a database
