@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+package squaredup;
+
+message SquaredUpFieldOptions {
+
+    // Is the field a GUID
+    bool is_guid = 1;
+
+    // Field is only relevant to perspectives
+    bool for_perspectives_only = 2;
+
+    // Field is only relevant for (non perspective) dashboards
+    bool for_dashboards_only = 3;
+
+    // The value of the field can be any user-defined input and has no functional meaning 
+    // to Squared Up
+    bool is_user_value = 4;
+
+    // Documentation string
+    string doc = 5;
+
+    // It is unusual for this field to be omitted
+    bool normally_required = 6;
+
+    // This field is often not set and is typically only specified if the user opts into it e.g. by configuring it
+    bool requires_configuration = 7;
+
+    // This field is only used in specific circumstances e.g. when a particular publishing action occurs
+    // on a dashboard
+    bool circumstantial_use = 8;
+
+    // The value of this field must be of a very specific range otherwise the product/feature will not behave as expected
+    bool is_constrained_value = 9;
+}
+
+extend google.protobuf.FieldOptions {
+    SquaredUpFieldOptions o = 50002;
+}

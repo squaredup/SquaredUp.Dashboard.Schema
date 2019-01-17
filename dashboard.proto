@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "google/protobuf/struct.proto";
+import "options.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 package squaredup;
@@ -13,23 +14,34 @@ package squaredup;
 message Dashboard {
 
 	// Typically page/scomdashboard
-	string type = 1;
+    string type = 1
+    [(o).normally_required = true,
+     (o).is_constrained_value = true];
 
 	// UUID of the dashboard
-	string id = 3;
+    string id = 3        
+    [(o).is_guid = true, 
+     (o).normally_required = true];
 
 	// ID of the dashboard this is a draft of
-	string derived_from = 4;
+    string derived_from = 4     
+    [(o).is_guid = true,
+     (o).circumstantial_use = true];
 
 	oneof _Title {
-		string title = 5;
+        string title = 5        
+        [(o).for_dashboards_only = true, 
+        (o).is_user_value = true];
 
 		// Perspectives have an identical schema but use 'name' in place of title
-		string name = 6;
+        string name = 6         
+        [(o).for_perspectives_only = true,  
+        (o).is_user_value = true];
 	}
 
 	// Details about the reference pack content this dashboard was created/installed from
-	ReferenceInfo created_from_reference = 7;
+	ReferenceInfo created_from_reference = 7
+    [(o).circumstantial_use = true];
 
 	// The content of the dashboard is always a single root element - for example, a list or a column
 	// This root element can be of any type but it will almost certainly contain a 'contents' **array** of
@@ -37,13 +49,17 @@ message Dashboard {
 	google.protobuf.Value content = 8;
 
 	// Custom actions
-	repeated DashboardAction actions = 9;
+    repeated DashboardAction actions = 9
+    [(o).requires_configuration = true];
 
 	// Used in perspectives - whether to display as a dashboard
-	bool dashboard_mode = 10;
+    bool dashboard_mode = 10            
+    [(o).for_perspectives_only = true,
+    (o).requires_configuration = true];
 
 	// Whether the dashboard is a draft
-	bool draft = 11;
+    bool draft = 11
+    [(o).circumstantial_use = true];
 
 	// Version/revision of the dashboard
 	//
@@ -54,39 +70,48 @@ message Dashboard {
 
 	// 'Tasks' is an array that previously served the same purpose as actions.
 	// Do not use
-	repeated google.protobuf.Value tasks = 13 [deprecated=true];
+    repeated google.protobuf.Value tasks = 13 
+    [deprecated=true, (o).requires_configuration = true];
 
 	// Obsolete commentary field
-	string _comment = 14 [deprecated=true];
+    string _comment = 14            
+    [deprecated=true, (o).is_user_value = true];
 
 	// The ranking order of a perspective
-	int32 rank = 15;
+    int32 rank = 15                 
+    [(o).for_perspectives_only = true];
 
 	// Matching predicates for a perspective
-	PerspectiveMatch match = 16;
+    PerspectiveMatch match = 16     
+    [(o).for_perspectives_only = true];
 
 	// Format, used for perspectives. Typically "page" but can be 'row'
-	string format = 17;
+    string format = 17              
+    [(o).for_perspectives_only = true, 
+    (o).is_constrained_value = true];
 	
 	// If a dashboard is of format 'row' (and is in fact a row perspective), the 'columns'
 	// are all individual cell tiles which can be validated against appropriate tile schema
 	repeated google.protobuf.Value columns = 18;
 
 	// String names of the licenses required for view/use. Most common on perspectives
-	repeated string required_licenses = 19;
+    repeated string required_licenses = 19
+    [(o).is_constrained_value = true];
 
 	OpenAccess open_access = 20;
 
 	DashboardHelp help = 21;
 
 	//Predicates for explicitly making a perspective hidden (contrast with 'match')
-	repeated PerspectiveMatch hidden_matches = 22;
+    repeated PerspectiveMatch hidden_matches = 22       
+    [(o).for_perspectives_only = true];
 }
 
 // Custom action attached to a database
 message DashboardAction {
 
-	string name = 1;
+    string name = 1           
+    [(o).is_user_value = true, (o).requires_configuration = true];
 
 	// Whether to display this action in the UI regardless of whether the owner/container
 	// of the action is currently selected or visible
@@ -96,25 +121,29 @@ message DashboardAction {
 	ActionDisplay display = 3;
 
 	// Parameters of any type (possibly nested objects)
-	map<string, google.protobuf.Value> parameters = 4;
+	map<string, google.protobuf.Value> parameters = 4
+    [(o).requires_configuration = true];
 }
 
 // Display options for an action
 message ActionDisplay {
 
 	// Button text (e.g. 'report availability')
-	string text = 1;
+    string text = 1           
+    [(o).is_user_value = true, (o).requires_configuration = true];
 }
 
 // Information about what reference pack this dashboard was installed from
 message ReferenceInfo {
 
 	// The reference pack ID
-	string pack_id = 1;
+    string pack_id = 1     
+    [(o).is_guid = true];
 
 	// The ID of the particular dashboard in the reference pack from which we were
 	// copied/created
-	string item_id = 2;
+    string item_id = 2     
+    [(o).is_guid = true];
 
 	// Version of the reference pack we were installed from 
 	//
@@ -181,12 +210,16 @@ message LayoutColumn_Column {
 // title)
 message AbstractTile {
 
-	string _type = 1;
+    string _type = 1
+    [(o).normally_required = true,
+     (o).is_constrained_value = true];
 
-	string title = 2;
+    string title = 2            
+    [(o).is_user_value = true];
 
 	// User editable description that is displayed under the title and typically explains what the tile is/does
-	string description = 3;
+    string description = 3      
+    [(o).is_user_value = true];
 
 	// Arbitrary config data (depends on _Type)
 	// 
@@ -202,27 +235,36 @@ message AbstractTile {
 message PerspectiveMatch {
 
 	// Exact ID match 
-	string id = 1;
+    string id = 1      
+    [(o).is_guid = true, 
+     (o).normally_required = true];
 
 	// type of entity to match on, e.g. scom/object
-	string type = 2;
+	string type = 2
+    [(o).normally_required = true,
+     (o).is_constrained_value = true];
 
 	// Class IDs (although singular ID in practice) to match on
-	string class_ids = 3;
+    string class_ids = 3     
+    [(o).is_guid = true];
 
 	// Group IDs (although singular ID in practice) to match on
-	string group_ids = 4;
+    string group_ids = 4      
+    [(o).is_guid = true];
 
 	// Whether to use object context for matching
 	// This value appears in early perspectives but is unused in practice and considered
 	// obsolete
-	bool object_context = 5 [deprecated=true];
+    bool object_context = 5 
+    [deprecated=true];
 
 	// TODO: Requires documentation. This field appears to be obsolete
-	bool is_monitor_alert = 6 [deprecated=true];
+    bool is_monitor_alert = 6 
+    [deprecated=true];
 
 	// Explanatory name of the match - appears unused?
-	string name = 7 [deprecated=true];
+    string name = 7 
+    [deprecated=true, (o).is_user_value = true];
 }
 
 //-------------------------------------------------------------------------------------
@@ -249,5 +291,6 @@ message OpenAccess {
 message DashboardHelp {
 
 	// Escaped HTML content
-	string content = 1;
+    string content = 1      
+    [(o).is_user_value = true];
 }
