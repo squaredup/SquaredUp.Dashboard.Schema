@@ -2,32 +2,39 @@ syntax = "proto3";
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
+import "options.proto";
 
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 package squaredup;
 
 message CommonScope {
 
-	// Group ID of the scope
-	string group_id = 1;
+    // Group ID of the scope
+    string group_id = 1
+    [(o).is_guid = true];
 
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
+    // Multiple specific object IDs
+    repeated string object_ids = 2
+    [(o).is_guid = true];
 
-	// A specific class ID
-	string classId = 3;
+    // A specific class ID
+    string classId = 3
+    [(o).is_guid = true];
 
-	// Criteria (such as severity)
-    string criteria = 4;
+    // Criteria (such as severity)
+    string criteria = 4
+    [(o).is_user_value = true];
         
     // Can be children or parents
-    string type = 5;
+    string type = 5
+    [(o).is_constrained_value = true];
 
     // Traversal depth eg. recursive
-	string traversal_depth = 6;
-	
-	// Whether to bring extended properties back
-	bool extended_properties = 7;
+    string traversal_depth = 6
+    [(o).is_constrained_value = true];
+    
+    // Whether to bring extended properties back
+    bool extended_properties = 7;
 
-	bool toplevelhosts = 8;
+    bool toplevelhosts = 8;
 }

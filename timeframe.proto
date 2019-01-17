@@ -3,18 +3,22 @@ syntax = "proto3";
 import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
+import "options.proto";
+
 option csharp_namespace = "SquaredUp.Extensibility.Protocol";
 package squaredup;
 
 message CommonTimeframe {
     // The type of timeframe. 'fixed' or 'inherit' (the latter inherits
     // from the containing page)
-    string type = 1;
+    string type = 1
+    [(o).is_constrained_value = true];
 
     // The range of the timeframe
     // 
     // This is a string literal such as "Last1Hour", "Last12Months" etc.
-    string range = 2;
+    string range = 2
+    [(o).is_constrained_value = true];
 
     // Custom time range - referenced by the product but cannot actually be set or used
     // in most instances
