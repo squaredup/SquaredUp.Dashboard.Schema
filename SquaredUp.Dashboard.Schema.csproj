@@ -34,6 +34,9 @@
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +71,10 @@
     <Compile Include="Dashboard\Schema\Visio.cs" />
     <Compile Include="Dashboard\Schema\Web.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dashboard\Schema\Validator\ConformanceTileParser.cs" />
+    <Compile Include="Dashboard\Schema\Validator\HeuristicTileParser.cs" />
+    <Compile Include="Dashboard\Schema\Validator\ITileConfigParser.cs" />
+    <Compile Include="Dashboard\Schema\Validator\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

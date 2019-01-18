@@ -1,7 +1,9 @@
 # Dashboard/perspective schema
 
 ## Notice
-This schema data and its assembly are designed for programmatic schema consumption and verification - not end user consumption
+This schema data and its assembly are designed for programmatic schema consumption and verification - not end user consumption.
+
+Additionally, the protocol buffer defined here is relatively 'impure' - dashboards use a large amount of dynamic behaviour, which requires a significant amount of logic inside the verifier. It is not sufficient to just parse JSON as the provided protocol buffer types
 
 ## Tiles
 
