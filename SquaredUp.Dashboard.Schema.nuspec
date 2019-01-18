@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>SquaredUp.Dashboard.Schema</id>
+    <version>1.0.0</version>
+    <authors>Squared Up</authors>
+    <owners>Squared Up Ltd.</owners>
+    <licenseUrl>https://github.com/squaredup/SquaredUp.Dashboard.Schema/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/squaredup/SquaredUp.Dashboard.Schema</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dashboard and perspective validation types for Squared Up</description>
+    <copyright>Copyright 2019</copyright>
+    <tags>schema protobuf squared up</tags>
+    <dependencies>
+      <dependency id="Google.Protobuf" version="3.6.1" />
+      <dependency id="Newtonsoft.Json" version="12.0.1"/>
+    </dependencies>
+  </metadata>
+</package>
