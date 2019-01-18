@@ -4,7 +4,7 @@ import "google/protobuf/struct.proto";
 import "timeframe.proto";
 import "scope.proto";
 
-option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+option csharp_namespace = "SquaredUp.Dashboard.Schema";
 package squaredup;
 
 //-------------------------------------------------------------------------------------

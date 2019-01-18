@@ -1,2 +1,1 @@
-docker run --rm --volume=%cd%:/input --volume=%cd%/csharp/proto:/extoutput -e "PROTO_LANG=csharp" -e "PROTO_OUTPUT=/extoutput" protoc
-docker run --rm --volume=%cd%:/input --volume=%cd%/go/proto:/extoutput -e "PROTO_LANG=go" -e "PROTO_OUTPUT=/extoutput" protoc
+docker run --rm --volume=%cd%:/input --volume=%cd%/Dashboard/Schema:/extoutput -e "PROTO_LANG=csharp" -e "PROTO_OUTPUT=/extoutput" protoc

@@ -5,7 +5,7 @@ import "google/protobuf/wrappers.proto";
 
 import "scope.proto";
 
-option csharp_namespace = "SquaredUp.Extensibility.Protocol";
+option csharp_namespace = "SquaredUp.Dashboard.Schema";
 package squaredup;
 
 message CommonContext {
