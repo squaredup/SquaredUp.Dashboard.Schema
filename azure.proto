@@ -15,11 +15,11 @@ package squaredup;
 // tile/azureappinsights-as-scalar
 message AzureInsightsAsScalarTileConfig {
 
-	AzureInsightsAsScalarTileConfig_Source source = 1;
+    AzureInsightsAsScalarTileConfig_Source source = 1;
 
-	AzureInsightsAsScalarTileConfig_Display display = 2;	
+    AzureInsightsAsScalarTileConfig_Display display = 2;	
 
-	AzureInsightsAsScalarTileConfig_Context context = 3;
+    AzureInsightsAsScalarTileConfig_Context context = 3;
 }
 
 message AzureInsightsAsScalarTileConfig_Context {
@@ -28,26 +28,26 @@ message AzureInsightsAsScalarTileConfig_Context {
 
 message AzureInsightsAsScalarTileConfig_Source {
 
-	// Content of the query body 
-	string contentBody = 1; 
+    // Content of the query body 
+    string contentBody = 1; 
 
-	// Method e.g. POST
-	string method = 2;
+    // Method e.g. POST
+    string method = 2;
 
-	// e.g. application/json
-	string content_type = 3;
+    // e.g. application/json
+    string content_type = 3;
 
-	string _security = 4;
+    string _security = 4;
 }
 
 message AzureInsightsAsScalarTileConfig_Display {
 
-	// Font size (!! naming convention incorrect !!)
-	double fontsize = 1;
+    // Font size (!! naming convention incorrect !!)
+    double fontsize = 1;
 
-	// Whether to coerce objects 
-	bool coerce_object = 2;
-	
+    // Whether to coerce objects 
+    bool coerce_object = 2;
+    
     // e.g. 'column'
     string zoom = 3;
 }
@@ -57,11 +57,11 @@ message AzureInsightsAsScalarTileConfig_Display {
 // tile/azureappinsights-as-table
 message AzureInsightsAsTableTileConfig {
 
-	AzureInsightsAsTableTileConfig_Source source = 1;
+    AzureInsightsAsTableTileConfig_Source source = 1;
 
-	AzureInsightsAsTableTileConfig_Display display = 2;	
+    AzureInsightsAsTableTileConfig_Display display = 2;	
 
-	AzureInsightsAsTableTileConfig_Context context = 3;
+    AzureInsightsAsTableTileConfig_Context context = 3;
 }
 
 message AzureInsightsAsTableTileConfig_Context {
@@ -70,22 +70,22 @@ message AzureInsightsAsTableTileConfig_Context {
 
 message AzureInsightsAsTableTileConfig_Source {
 
-	// Content of the query body 
-	string contentBody = 1; 
+    // Content of the query body 
+    string contentBody = 1; 
 
-	// Method e.g. POST
-	string method = 2;
+    // Method e.g. POST
+    string method = 2;
 
-	// e.g. application/json
-	string content_type = 3;
+    // e.g. application/json
+    string content_type = 3;
 
-	string _security = 4;
+    string _security = 4;
 }
 
 message AzureInsightsAsTableTileConfig_Display {
 
-	// Whether to display table headers
-	bool show_headers = 1;
+    // Whether to display table headers
+    bool show_headers = 1;
 
     // e.g. 'column'
     string zoom = 2;
@@ -96,11 +96,11 @@ message AzureInsightsAsTableTileConfig_Display {
 
 message AzureLogAnalyticsAsScalarTileConfig {
 
-	AzureLogAnalyticsAsScalarTileConfig_Source source = 1;
+    AzureLogAnalyticsAsScalarTileConfig_Source source = 1;
 
-	AzureLogAnalyticsAsScalarTileConfig_Display display = 2;	
+    AzureLogAnalyticsAsScalarTileConfig_Display display = 2;	
 
-	AzureLogAnalyticsAsScalarTileConfig_Context context = 3;
+    AzureLogAnalyticsAsScalarTileConfig_Context context = 3;
 }
 
 message AzureLogAnalyticsAsScalarTileConfig_Context {
@@ -109,25 +109,25 @@ message AzureLogAnalyticsAsScalarTileConfig_Context {
 
 message AzureLogAnalyticsAsScalarTileConfig_Source {
 
-	// Content of the query body 
-	string contentBody = 1; 
+    // Content of the query body 
+    string contentBody = 1; 
 
-	// Method e.g. POST
-	string method = 2;
+    // Method e.g. POST
+    string method = 2;
 
-	// e.g. application/json
-	string content_type = 3;
+    // e.g. application/json
+    string content_type = 3;
 
-	string _security = 4;
+    string _security = 4;
 }
 
 message AzureLogAnalyticsAsScalarTileConfig_Display {
 
-	// Font size (!! naming convention incorrect !!)
-	double fontsize = 1;
+    // Font size (!! naming convention incorrect !!)
+    double fontsize = 1;
 
-	// Whether to coerce objects 
-	bool coerce_object = 2;
+    // Whether to coerce objects 
+    bool coerce_object = 2;
 
     // e.g. 'column'
     string zoom = 3;
@@ -138,11 +138,11 @@ message AzureLogAnalyticsAsScalarTileConfig_Display {
 // tile/azureloganalytics-as-table
 message AzureLogAnalyticsAsTableTileConfig {
 
-	AzureLogAnalyticsAsTableTileConfig_Source source = 1;
+    AzureLogAnalyticsAsTableTileConfig_Source source = 1;
 
-	AzureLogAnalyticsAsTableTileConfig_Display display = 2;	
+    AzureLogAnalyticsAsTableTileConfig_Display display = 2;	
 
-	AzureLogAnalyticsAsTableTileConfig_Context context = 3;
+    AzureLogAnalyticsAsTableTileConfig_Context context = 3;
 }
 
 message AzureLogAnalyticsAsTableTileConfig_Context {
@@ -151,22 +151,22 @@ message AzureLogAnalyticsAsTableTileConfig_Context {
 
 message AzureLogAnalyticsAsTableTileConfig_Source {
 
-	// Content of the query body 
-	string contentBody = 1; 
+    // Content of the query body 
+    string contentBody = 1; 
 
-	// Method e.g. POST
-	string method = 2;
+    // Method e.g. POST
+    string method = 2;
 
-	// e.g. application/json
-	string content_type = 3;
+    // e.g. application/json
+    string content_type = 3;
 
-	string _security = 4;
+    string _security = 4;
 }
 
 message AzureLogAnalyticsAsTableTileConfig_Display {
 
-	// Whether to display table headers
-	bool show_headers = 1;
+    // Whether to display table headers
+    bool show_headers = 1;
 
     // e.g. 'column'
     string zoom = 2;

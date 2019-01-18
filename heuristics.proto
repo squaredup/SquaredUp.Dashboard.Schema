@@ -33,56 +33,56 @@ package squaredup;
 
 message Heuristic1_AlertListTileConfig {
 
-	Heuristic1_AlertListTileConfig_Source source = 1;
+    Heuristic1_AlertListTileConfig_Source source = 1;
 
-	Heuristic1_AlertListTileConfig_Display display = 2;
+    Heuristic1_AlertListTileConfig_Display display = 2;
 
-	// TODO: Typing
-	google.protobuf.Value context = 3;
+    // TODO: Typing
+    google.protobuf.Value context = 3;
 }
 
 message Heuristic1_AlertListTileConfig_Source {
 
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 
-	// Set of severity types - encoded as integers in strings (e.g. "1")
-	repeated string severities = 2;
+    // Set of severity types - encoded as integers in strings (e.g. "1")
+    repeated string severities = 2;
 
-	// Set of priority types - encoded as integers in strings (e.g. "1")
-	repeated string priorities = 3;
+    // Set of priority types - encoded as integers in strings (e.g. "1")
+    repeated string priorities = 3;
 
-	// Alert sources - typically "monitor" or "rule" (or both)
-	repeated string sources = 4;
+    // Alert sources - typically "monitor" or "rule" (or both)
+    repeated string sources = 4;
 
-	// Alert owner (filter). Typically "any" or "me"
-	//
-	// This is encoded as 'value' because it arbitrarily switches between 
-	// a string or an array with only one element
-	google.protobuf.Value owner = 5;
+    // Alert owner (filter). Typically "any" or "me"
+    //
+    // This is encoded as 'value' because it arbitrarily switches between 
+    // a string or an array with only one element
+    google.protobuf.Value owner = 5;
 
-	// Set of states permitted - encoded as integers in strings (e.g. "-1")
-	//
-	// Typical value appears to be any (open) encoded as -1
-	repeated string states = 6;
+    // Set of states permitted - encoded as integers in strings (e.g. "-1")
+    //
+    // Typical value appears to be any (open) encoded as -1
+    repeated string states = 6;
 
-	// Timeframe of the alert display
-	CommonTimeframe timeframe = 7;
+    // Timeframe of the alert display
+    CommonTimeframe timeframe = 7;
 }
 
 // Display options for alert list
 message Heuristic1_AlertListTileConfig_Display {
 
-	// Max alerts to display
-	int32 limit = 1;
+    // Max alerts to display
+    int32 limit = 1;
 
-	// Whether to display column titles
-	string show_titles = 2;
+    // Whether to display column titles
+    string show_titles = 2;
 
-	// Whether to show all alerts regardless of limit
-	bool show_all = 3;
+    // Whether to show all alerts regardless of limit
+    bool show_all = 3;
 
-	// Column names to display in the list
-	repeated string columns = 4;
+    // Column names to display in the list
+    repeated string columns = 4;
 
     // e.g. 'column'
     string zoom = 5;
@@ -98,69 +98,69 @@ message Heuristic1_AlertListTileConfig_Display {
 //
 
 message Heuristic2_CommonPerformanceDisplay {
-	// e.g. fit
-	string range = 1;
+    // e.g. fit
+    string range = 1;
 
-	// unitkey instead of unitKey
-	repeated string unitkey = 2;
+    // unitkey instead of unitKey
+    repeated string unitkey = 2;
 
-	double height = 3;
+    double height = 3;
 
-	string label = 4;
+    string label = 4;
 
-	string custom_label = 5;
+    string custom_label = 5;
 
-	string link_template = 6;
-	string label_template = 7;
+    string link_template = 6;
+    string label_template = 7;
 
-	double rangemax = 8;
-	double rangemin = 9;
-	
-	// Unknown/unverified content
-	map<string, google.protobuf.Value> metadata = 10;
+    double rangemax = 8;
+    double rangemin = 9;
+    
+    // Unknown/unverified content
+    map<string, google.protobuf.Value> metadata = 10;
 
-	bool show_key = 11;
+    bool show_key = 11;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-bar
 
 message Heuristic2_ScomPerfAsBarTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic2_CommonPerformanceDisplay display = 2;
-	Heuristic2_ScomPerfAsBarTileConfig_Context context = 3;
+    CommonPerformanceSource source = 1;
+    Heuristic2_CommonPerformanceDisplay display = 2;
+    Heuristic2_ScomPerfAsBarTileConfig_Context context = 3;
 }
 
 message Heuristic2_ScomPerfAsBarTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-heatmap
 
 message Heuristic2_ScomPerfAsHeatmapTileConfig {
-	Heuristic2_ScomPerfAsHeatmapTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic2_ScomPerfAsHeatmapTileConfig_Display display = 3;
+    Heuristic2_ScomPerfAsHeatmapTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic2_ScomPerfAsHeatmapTileConfig_Display display = 3;
 }
 
 message Heuristic2_ScomPerfAsHeatmapTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 message Heuristic2_ScomPerfAsHeatmapTileConfig_Display {
-	double size_scale = 1;
+    double size_scale = 1;
 
-	uint32 red = 2;
-	uint32 green = 3;
-	uint32 blue = 4;
-	uint32 alpha = 5;
+    uint32 red = 2;
+    uint32 green = 3;
+    uint32 blue = 4;
+    uint32 alpha = 5;
 
-	// e.g. properties.isVirtualNode
-	string size_property = 6;
+    // e.g. properties.isVirtualNode
+    string size_property = 6;
 
-	double height = 7;
-	
+    double height = 7;
+    
     // e.g. 'column'
     string zoom = 8;
 }
@@ -169,34 +169,34 @@ message Heuristic2_ScomPerfAsHeatmapTileConfig_Display {
 // tile/scomperf-as-line-graph
 
 message Heuristic2_ScomPerfAsLineGraphTileConfig {
-	Heuristic2_ScomPerfAsLineGraphTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic2_CommonPerformanceDisplay display = 3;
+    Heuristic2_ScomPerfAsLineGraphTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic2_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic2_ScomPerfAsLineGraphTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-line-graph-report
 
 message Heuristic2_ScomPerfAsLineGraphReportTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic2_CommonPerformanceDisplay display = 2;
+    CommonPerformanceSource source = 1;
+    Heuristic2_CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-spark-lines
 
 message Heuristic2_ScomPerfAsSparklinesTileConfig {
-	Heuristic2_ScomPerfAsSparklinesTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic2_CommonPerformanceDisplay display = 3;
+    Heuristic2_ScomPerfAsSparklinesTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic2_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic2_ScomPerfAsSparklinesTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
@@ -240,70 +240,70 @@ message Heuristic3_VisioTileConfig_Display {
 //
 
 message Heuristic4_CommonPerformanceDisplay {
-	// e.g. fit
-	string range = 1;
+    // e.g. fit
+    string range = 1;
 
-	// unitkey instead of unitKey
-	repeated string unit_key = 2;
+    // unitkey instead of unitKey
+    repeated string unit_key = 2;
 
-	double height = 3;
+    double height = 3;
 
-	string label = 4;
+    string label = 4;
 
-	string custom_label = 5;
+    string custom_label = 5;
 
-	string link_template = 6;
-	string label_template = 7;
+    string link_template = 6;
+    string label_template = 7;
 
-	double rangemax = 8;
-	double rangemin = 9;
-	
-	// Unknown/unverified content
-	map<string, google.protobuf.Value> metadata = 10;
+    double rangemax = 8;
+    double rangemin = 9;
+    
+    // Unknown/unverified content
+    map<string, google.protobuf.Value> metadata = 10;
 
-	// Incorrectly provided as string
-	string show_key = 11;
+    // Incorrectly provided as string
+    string show_key = 11;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-bar
 
 message Heuristic4_ScomPerfAsBarTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic4_CommonPerformanceDisplay display = 2;
-	Heuristic4_ScomPerfAsBarTileConfig_Context context = 3;
+    CommonPerformanceSource source = 1;
+    Heuristic4_CommonPerformanceDisplay display = 2;
+    Heuristic4_ScomPerfAsBarTileConfig_Context context = 3;
 }
 
 message Heuristic4_ScomPerfAsBarTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-heatmap
 
 message Heuristic4_ScomPerfAsHeatmapTileConfig {
-	Heuristic4_ScomPerfAsHeatmapTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic4_ScomPerfAsHeatmapTileConfig_Display display = 3;
+    Heuristic4_ScomPerfAsHeatmapTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic4_ScomPerfAsHeatmapTileConfig_Display display = 3;
 }
 
 message Heuristic4_ScomPerfAsHeatmapTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 message Heuristic4_ScomPerfAsHeatmapTileConfig_Display {
-	double size_scale = 1;
+    double size_scale = 1;
 
-	uint32 red = 2;
-	uint32 green = 3;
-	uint32 blue = 4;
-	uint32 alpha = 5;
+    uint32 red = 2;
+    uint32 green = 3;
+    uint32 blue = 4;
+    uint32 alpha = 5;
 
-	// e.g. properties.isVirtualNode
-	string size_property = 6;
+    // e.g. properties.isVirtualNode
+    string size_property = 6;
 
-	double height = 7;
-	
+    double height = 7;
+    
     // e.g. 'column'
     string zoom = 8;
 }
@@ -312,34 +312,34 @@ message Heuristic4_ScomPerfAsHeatmapTileConfig_Display {
 // tile/scomperf-as-line-graph
 
 message Heuristic4_ScomPerfAsLineGraphTileConfig {
-	Heuristic4_ScomPerfAsLineGraphTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic4_CommonPerformanceDisplay display = 3;
+    Heuristic4_ScomPerfAsLineGraphTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic4_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic4_ScomPerfAsLineGraphTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-line-graph-report
 
 message Heuristic4_ScomPerfAsLineGraphReportTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic4_CommonPerformanceDisplay display = 2;
+    CommonPerformanceSource source = 1;
+    Heuristic4_CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-spark-lines
 
 message Heuristic4_ScomPerfAsSparklinesTileConfig {
-	Heuristic4_ScomPerfAsSparklinesTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic4_CommonPerformanceDisplay display = 3;
+    Heuristic4_ScomPerfAsSparklinesTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic4_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic4_ScomPerfAsSparklinesTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
@@ -352,70 +352,70 @@ message Heuristic4_ScomPerfAsSparklinesTileConfig_Context {
 //
 
 message Heuristic5_CommonPerformanceDisplay {
-	// e.g. fit
-	string range = 1;
+    // e.g. fit
+    string range = 1;
 
-	// unitkey instead of unitKey
-	repeated string unit_key = 2;
+    // unitkey instead of unitKey
+    repeated string unit_key = 2;
 
-	double height = 3;
+    double height = 3;
 
-	string label = 4;
+    string label = 4;
 
-	string custom_label = 5;
+    string custom_label = 5;
 
-	string link_template = 6;
-	string label_template = 7;
-	
-	google.protobuf.Value rangemax = 8;
-	google.protobuf.Value rangemin = 9;
-	
-	// Unknown/unverified content
-	map<string, google.protobuf.Value> metadata = 10;
+    string link_template = 6;
+    string label_template = 7;
+    
+    google.protobuf.Value rangemax = 8;
+    google.protobuf.Value rangemin = 9;
+    
+    // Unknown/unverified content
+    map<string, google.protobuf.Value> metadata = 10;
 
-	// Incorrectly provided as string
-	string show_key = 11;
+    // Incorrectly provided as string
+    string show_key = 11;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-bar
 
 message Heuristic5_ScomPerfAsBarTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic5_CommonPerformanceDisplay display = 2;
-	Heuristic5_ScomPerfAsBarTileConfig_Context context = 3;
+    CommonPerformanceSource source = 1;
+    Heuristic5_CommonPerformanceDisplay display = 2;
+    Heuristic5_ScomPerfAsBarTileConfig_Context context = 3;
 }
 
 message Heuristic5_ScomPerfAsBarTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-heatmap
 
 message Heuristic5_ScomPerfAsHeatmapTileConfig {
-	Heuristic5_ScomPerfAsHeatmapTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic5_ScomPerfAsHeatmapTileConfig_Display display = 3;
+    Heuristic5_ScomPerfAsHeatmapTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic5_ScomPerfAsHeatmapTileConfig_Display display = 3;
 }
 
 message Heuristic5_ScomPerfAsHeatmapTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 message Heuristic5_ScomPerfAsHeatmapTileConfig_Display {
-	double size_scale = 1;
+    double size_scale = 1;
 
-	google.protobuf.Value red = 2;
-	google.protobuf.Value green = 3;
-	google.protobuf.Value blue = 4;
-	google.protobuf.Value alpha = 5;
+    google.protobuf.Value red = 2;
+    google.protobuf.Value green = 3;
+    google.protobuf.Value blue = 4;
+    google.protobuf.Value alpha = 5;
 
-	// e.g. properties.isVirtualNode
-	string size_property = 6;
+    // e.g. properties.isVirtualNode
+    string size_property = 6;
 
-	google.protobuf.Value height = 7;
-	
+    google.protobuf.Value height = 7;
+    
     // e.g. 'column'
     string zoom = 8;
 }
@@ -424,32 +424,32 @@ message Heuristic5_ScomPerfAsHeatmapTileConfig_Display {
 // tile/scomperf-as-line-graph
 
 message Heuristic5_ScomPerfAsLineGraphTileConfig {
-	Heuristic5_ScomPerfAsLineGraphTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic5_CommonPerformanceDisplay display = 3;
+    Heuristic5_ScomPerfAsLineGraphTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic5_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic5_ScomPerfAsLineGraphTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-line-graph-report
 
 message Heuristic5_ScomPerfAsLineGraphReportTileConfig {
-	CommonPerformanceSource source = 1;
-	Heuristic5_CommonPerformanceDisplay display = 2;
+    CommonPerformanceSource source = 1;
+    Heuristic5_CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-spark-lines
 
 message Heuristic5_ScomPerfAsSparklinesTileConfig {
-	Heuristic5_ScomPerfAsSparklinesTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	Heuristic5_CommonPerformanceDisplay display = 3;
+    Heuristic5_ScomPerfAsSparklinesTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    Heuristic5_CommonPerformanceDisplay display = 3;
 }
 
 message Heuristic5_ScomPerfAsSparklinesTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }

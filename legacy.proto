@@ -21,10 +21,10 @@ package squaredup;
 // to distinguish and then remove/modify _type fields appropriately
 
 message DashboardStandardType {
-	string type = 1;
+    string type = 1;
 }
 
 message DashboardObsoleteType {
-	string _type = 1;
+    string _type = 1;
 }
 

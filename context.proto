@@ -9,8 +9,8 @@ option csharp_namespace = "SquaredUp.Dashboard.Schema";
 package squaredup;
 
 message CommonContext {
-	bool alerts = 1;
-	bool extended_properties = 2;
-	CommonScope scope = 3;
-	CommonScope source = 4;
+    bool alerts = 1;
+    bool extended_properties = 2;
+    CommonScope scope = 3;
+    CommonScope source = 4;
 }

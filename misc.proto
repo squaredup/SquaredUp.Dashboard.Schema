@@ -17,30 +17,30 @@ package squaredup;
 
 // tile/knowledge-editor
 message KnowledgeEditorTileConfig {
-	KnowledgeEditorTileConfig_Source source = 1;
+    KnowledgeEditorTileConfig_Source source = 1;
 }
 
 message KnowledgeEditorTileConfig_Source {
 
-	// Whether to allow editing of company knowledge
-	bool company_knowledge = 1;
+    // Whether to allow editing of company knowledge
+    bool company_knowledge = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/text
 
 message TextTileConfig {
-	TextTileConfig_Display display = 1;
+    TextTileConfig_Display display = 1;
 
-	// Some instances of this tile supply an empty (redundant) context
-	CommonContext context = 2;
+    // Some instances of this tile supply an empty (redundant) context
+    CommonContext context = 2;
 
-	// And the same for source...
-	TextTileConfig_Source source = 3;
+    // And the same for source...
+    TextTileConfig_Source source = 3;
 }
 
 message TextTileConfig_Display {
-	string content_template = 1;
+    string content_template = 1;
 }
 
 message TextTileConfig_Source {
@@ -52,30 +52,30 @@ message TextTileConfig_Source {
 
 message NewScomContextRegion {
 
-	// region/newscomcontext
-	string _type = 1;
+    // region/newscomcontext
+    string _type = 1;
 
-	NewScomContextRegionConfig config = 2;
+    NewScomContextRegionConfig config = 2;
 
-	// Expected to be a root column or layout which nests further tiles
-	google.protobuf.Value content = 3;
+    // Expected to be a root column or layout which nests further tiles
+    google.protobuf.Value content = 3;
 }
 
 message NewScomContextRegionConfig {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/button
 
 message ButtonTileConfig {
-	ButtonTileConfig_Display display = 1;
+    ButtonTileConfig_Display display = 1;
 }
 
 message ButtonTileConfig_Display {
-	string icon = 1;
-	string url = 2;
-	string class = 3;
+    string icon = 1;
+    string url = 2;
+    string class = 3;
 }
 
 //-------------------------------------------------------------------------------------
@@ -83,6 +83,6 @@ message ButtonTileConfig_Display {
 
 message AlertContextTileConfig {
 
-	// No known fields
+    // No known fields
 
 }

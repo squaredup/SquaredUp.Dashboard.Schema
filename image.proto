@@ -16,29 +16,29 @@ package squaredup;
 
 // tile/image
 message ImageTileConfig {
-	CommonContext context = 1;
-	ImageTileConfig_Display display = 2;
+    CommonContext context = 1;
+    ImageTileConfig_Display display = 2;
 
-	// Generally empty (source: {})
-	//
-	// Unlike other tiles, the scope ends up in context for this tile 
-	google.protobuf.Value source = 3;
+    // Generally empty (source: {})
+    //
+    // Unlike other tiles, the scope ends up in context for this tile 
+    google.protobuf.Value source = 3;
 }
 
 message ImageTileConfig_Display {
-	double size = 1;
+    double size = 1;
 
-	// Relative URL of the image (relative to the host)
-	string src = 2;
+    // Relative URL of the image (relative to the host)
+    string src = 2;
 
-	// e.g. circle
-	string shape = 3;
+    // e.g. circle
+    string shape = 3;
 
-	// Can be name, path, custom
-	string label = 4;
+    // Can be name, path, custom
+    string label = 4;
 
-	// Custom label template, if supplied
-	string custom_label = 5;
+    // Custom label template, if supplied
+    string custom_label = 5;
 
     // e.g. 'column'
     string zoom = 6;
@@ -46,15 +46,15 @@ message ImageTileConfig_Display {
 
 message ImageTileConfig_Scope {
 
-	// Group ID of the scope
-	string group_id = 1;
+    // Group ID of the scope
+    string group_id = 1;
 
-	// Multiple specific object IDs
-	repeated string object_ids = 2;
+    // Multiple specific object IDs
+    repeated string object_ids = 2;
 
-	// A specific class ID
-	string classId = 3;
+    // A specific class ID
+    string classId = 3;
 
-	// Criteria (such as severity)
-	string criteria = 4;
+    // Criteria (such as severity)
+    string criteria = 4;
 }

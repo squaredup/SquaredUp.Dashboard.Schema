@@ -18,14 +18,14 @@ package squaredup;
 //-------------------------------------------------------------------------------------
 
 message DynamicTableTileConfig {
-	CommonContext context = 1;
-	DynamicTableTileConfig_Display display = 2;
+    CommonContext context = 1;
+    DynamicTableTileConfig_Display display = 2;
 }
 
 message DynamicTableTileConfig_Display {
 
-	// Perspective to display (if any)
-	DynamicTableTileConfig_Display_Perspective perspective = 1;
+    // Perspective to display (if any)
+    DynamicTableTileConfig_Display_Perspective perspective = 1;
 
     // e.g. 'column'
     string zoom = 2;
@@ -33,9 +33,9 @@ message DynamicTableTileConfig_Display {
 
 message DynamicTableTileConfig_Display_Perspective {
 
-	// ID of any related perspective
-	// Default is null, so this is string value rather than string
-	google.protobuf.StringValue id = 1;
+    // ID of any related perspective
+    // Default is null, so this is string value rather than string
+    google.protobuf.StringValue id = 1;
 }
 
 
@@ -47,51 +47,51 @@ message DynamicTableTileConfig_Display_Perspective {
 
 // tile/matrix
 message MatrixTileConfig {
-	CommonContext context = 1;
+    CommonContext context = 1;
 
-	MatrixTileConfig_Display display = 2;
+    MatrixTileConfig_Display display = 2;
 
-	// Generally empty (source: {})
-	google.protobuf.Value source = 3;
+    // Generally empty (source: {})
+    google.protobuf.Value source = 3;
 }
 
 message MatrixTileConfig_Display {
 
-	// e.g. "Large"
-	string mode = 1;
+    // e.g. "Large"
+    string mode = 1;
 
-	// e.g. "dyanmic"
-	string rendering = 2;
+    // e.g. "dyanmic"
+    string rendering = 2;
 
-	// whether to "always link to row object"
-	bool full_row_link = 3;
+    // whether to "always link to row object"
+    bool full_row_link = 3;
 
-	repeated MatrixTile_Column columns = 4;
+    repeated MatrixTile_Column columns = 4;
 
-	MatrixTileConfig_Display_Perspective perspective = 5;
+    MatrixTileConfig_Display_Perspective perspective = 5;
 
     // e.g. 'column'
     string zoom = 6;
 }
 
 message MatrixTileConfig_Display_Perspective {
-	// ID of the perspective to use for the matrix tile
-	string id = 1;
+    // ID of the perspective to use for the matrix tile
+    string id = 1;
 }
 
 message MatrixTile_Column {
-	string _type = 1;
-	string title = 2;	
+    string _type = 1;
+    string title = 2;	
 
-	// Config varying by type
-	google.protobuf.Value config = 3;
+    // Config varying by type
+    google.protobuf.Value config = 3;
 }
 
 // Transform type - many celltiles have 'transforms' in common
 // which cotnains this type
 message MatrixTile_Transform {
-	string operator = 1;
-	map<string, google.protobuf.Value> parameters = 2;
+    string operator = 1;
+    map<string, google.protobuf.Value> parameters = 2;
 }
 
 //-------------------------------------------------------------------------------------
@@ -102,150 +102,150 @@ message MatrixTile_Transform {
 
 // celltile/scomperf-as-sparkline
 message CellTile_ScomPerfAsSparkline_Config {
-	CommonPerformanceSource source = 1;
-	CellTile_ScomPerfAsSparkline_Config_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CommonPerformanceSource source = 1;
+    CellTile_ScomPerfAsSparkline_Config_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_ScomPerfAsSparkline_Config_Display {
-	string label_template = 1;
+    string label_template = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/bar
 message CellTile_Bar_Config {
-	CommonPerformanceSource source = 1;
-	CellTile_Bar_Config_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CommonPerformanceSource source = 1;
+    CellTile_Bar_Config_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_Bar_Config_Display {
-	string value_template = 1;
+    string value_template = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/sla
 
 message CellTile_Sla_Config {
-	CellTile_Sla_Config_Source source = 1;
-	repeated MatrixTile_Transform transforms = 2;
+    CellTile_Sla_Config_Source source = 1;
+    repeated MatrixTile_Transform transforms = 2;
 
 }
 message CellTile_Sla_Config_Source {
 
-	// ID of the service level object to use for the SLA
-	string slo_id = 1;
+    // ID of the service level object to use for the SLA
+    string slo_id = 1;
 
-	CommonTimeframe timeframe = 2;
+    CommonTimeframe timeframe = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/text
 
 message CellTile_Text_Config {
-	CellTile_Text_Display display = 1;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_Text_Display display = 1;
+    repeated MatrixTile_Transform transforms = 3;
 
 }
 message CellTile_Text_Display {
-	string content_template = 1;
-	string cell_width = 3;
+    string content_template = 1;
+    string cell_width = 3;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/signalstrength
 
 message CellTile_SignalStrength_Config {
-	CellTile_SignalStrength_Display display = 1;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_SignalStrength_Display display = 1;
+    repeated MatrixTile_Transform transforms = 3;
 
 }
 message CellTile_SignalStrength_Display {
-	// property accessor to execute and retrieve the numeric value. 
-	string value_property = 1;
-	int32 height = 2;
-	int32 width = 3;
+    // property accessor to execute and retrieve the numeric value. 
+    string value_property = 1;
+    int32 height = 2;
+    int32 width = 3;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/monitor
 
 message CellTile_Monitor_Config {
-	CellTile_Monitor_Source source = 1;
-	CellTile_Monitor_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_Monitor_Source source = 1;
+    CellTile_Monitor_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_Monitor_Source {
-	repeated string monitor_ids = 1;
+    repeated string monitor_ids = 1;
 }
 
 message CellTile_Monitor_Display {
-	bool show_label = 1;
+    bool show_label = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/status
 
 message CellTile_Status_Config {
-	CellTile_Status_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_Status_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_Status_Display {
-	bool show_status_icon = 1;
-	string label_template = 2;
-	string cell_width = 3;
+    bool show_status_icon = 1;
+    string label_template = 2;
+    string cell_width = 3;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/status-block
 
 message CellTile_StatusBlock_Config {
-	CellTile_StatusBlock_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_StatusBlock_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_StatusBlock_Display {
-	bool full_width = 1;
-	string label_template = 2;
+    bool full_width = 1;
+    string label_template = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/timeseriesblocks
 
 message CellTile_TimeseriesBlocks_Config {
-	CellTile_TimeseriesBlocks_Source source = 1;
-	CellTile_TimeseriesBlocks_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_TimeseriesBlocks_Source source = 1;
+    CellTile_TimeseriesBlocks_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_TimeseriesBlocks_Display {
-	int32 width = 1;
-	bool full_width = 2;
-	string cell_width = 3;
+    int32 width = 1;
+    bool full_width = 2;
+    string cell_width = 3;
 }
 
 message CellTile_TimeseriesBlocks_Source {
-	repeated string monitor_ids = 1;
-	CommonTimeframe timeframe = 4;
+    repeated string monitor_ids = 1;
+    CommonTimeframe timeframe = 4;
 }
 
 //-------------------------------------------------------------------------------------
 // celltile/monitor-status
 
 message CellTile_MonitorStatus_Config {
-	CellTile_MonitorStatus_Source source = 1;
-	CellTile_MonitorStatus_Display display = 2;
-	repeated MatrixTile_Transform transforms = 3;
+    CellTile_MonitorStatus_Source source = 1;
+    CellTile_MonitorStatus_Display display = 2;
+    repeated MatrixTile_Transform transforms = 3;
 }
 
 message CellTile_MonitorStatus_Source {
-	repeated string monitor_ids = 1;
+    repeated string monitor_ids = 1;
 }
 
 message CellTile_MonitorStatus_Display {
-	bool full_width = 1;
-	string link_template = 2;
-	string cell_width = 3;
+    bool full_width = 1;
+    string link_template = 2;
+    string cell_width = 3;
 }

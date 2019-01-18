@@ -13,7 +13,8 @@ package squaredup;
 //  SLA tile
 //
 //-------------------------------------------------------------------------------------
-
+// tile/sla
+//
 message SlaTileConfig {
     CommonContext context = 1;
     SlaTileConfig_Source source = 2;
@@ -23,7 +24,7 @@ message SlaTileConfig {
 message SlaTileConfig_Source {
     CommonTimeframe timeframe = 1;
 
-	// ID of the service level object to use for the SLA
+    // ID of the service level object to use for the SLA
     string slo_id = 2;
 }
 

@@ -16,49 +16,49 @@ package squaredup;
 
 // tile/allscomperf
 message AllScomPerfTileConfig {
-	CommonPerformanceSource source = 1;
-	CommonPerformanceDisplay display = 2;
+    CommonPerformanceSource source = 1;
+    CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-bar
 
 message ScomPerfAsBarTileConfig {
-	CommonPerformanceSource source = 1;
-	CommonPerformanceDisplay display = 2;
-	ScomPerfAsBarTileConfig_Context context = 3;
+    CommonPerformanceSource source = 1;
+    CommonPerformanceDisplay display = 2;
+    ScomPerfAsBarTileConfig_Context context = 3;
 }
 
 message ScomPerfAsBarTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-heatmap
 
 message ScomPerfAsHeatmapTileConfig {
-	ScomPerfAsHeatmapTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	ScomPerfAsHeatmapTileConfig_Display display = 3;
+    ScomPerfAsHeatmapTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    ScomPerfAsHeatmapTileConfig_Display display = 3;
 }
 
 message ScomPerfAsHeatmapTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 message ScomPerfAsHeatmapTileConfig_Display {
-	double size_scale = 1;
+    double size_scale = 1;
 
-	uint32 red = 2;
-	uint32 green = 3;
-	uint32 blue = 4;
-	uint32 alpha = 5;
+    uint32 red = 2;
+    uint32 green = 3;
+    uint32 blue = 4;
+    uint32 alpha = 5;
 
-	// e.g. properties.isVirtualNode
-	string size_property = 6;
+    // e.g. properties.isVirtualNode
+    string size_property = 6;
 
-	double height = 7;
-	
+    double height = 7;
+    
     // e.g. 'column'
     string zoom = 8;
 }
@@ -67,32 +67,32 @@ message ScomPerfAsHeatmapTileConfig_Display {
 // tile/scomperf-as-line-graph
 
 message ScomPerfAsLineGraphTileConfig {
-	ScomPerfAsLineGraphTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	CommonPerformanceDisplay display = 3;
+    ScomPerfAsLineGraphTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    CommonPerformanceDisplay display = 3;
 }
 
 message ScomPerfAsLineGraphTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-line-graph-report
 
 message ScomPerfAsLineGraphReportTileConfig {
-	CommonPerformanceSource source = 1;
-	CommonPerformanceDisplay display = 2;
+    CommonPerformanceSource source = 1;
+    CommonPerformanceDisplay display = 2;
 }
 
 //-------------------------------------------------------------------------------------
 // tile/scomperf-as-spark-lines
 
 message ScomPerfAsSparklinesTileConfig {
-	ScomPerfAsSparklinesTileConfig_Context context = 1;
-	CommonPerformanceSource source = 2;
-	CommonPerformanceDisplay display = 3;
+    ScomPerfAsSparklinesTileConfig_Context context = 1;
+    CommonPerformanceSource source = 2;
+    CommonPerformanceDisplay display = 3;
 }
 
 message ScomPerfAsSparklinesTileConfig_Context {
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 }

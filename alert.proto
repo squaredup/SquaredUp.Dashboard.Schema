@@ -16,57 +16,57 @@ package squaredup;
 // Tile config of tile/alert-list
 message AlertListTileConfig {
 
-	AlertListTileConfig_Source source = 1;
+    AlertListTileConfig_Source source = 1;
 
-	AlertListTileConfig_Display display = 2;
+    AlertListTileConfig_Display display = 2;
 
-	// TODO: Typing
-	google.protobuf.Value context = 3;
+    // TODO: Typing
+    google.protobuf.Value context = 3;
 }
 
 // Source options for alert list tile
 message AlertListTileConfig_Source {
 
-	CommonScope scope = 1;
+    CommonScope scope = 1;
 
-	// Set of severity types - encoded as integers in strings (e.g. "1")
-	repeated string severities = 2;
+    // Set of severity types - encoded as integers in strings (e.g. "1")
+    repeated string severities = 2;
 
-	// Set of priority types - encoded as integers in strings (e.g. "1")
-	repeated string priorities = 3;
+    // Set of priority types - encoded as integers in strings (e.g. "1")
+    repeated string priorities = 3;
 
-	// Alert sources - typically "monitor" or "rule" (or both)
-	repeated string sources = 4;
+    // Alert sources - typically "monitor" or "rule" (or both)
+    repeated string sources = 4;
 
-	// Alert owner (filter). Typically "any" or "me"
-	//
-	// This is encoded as 'value' because it arbitrarily switches between 
-	// a string or an array with only one element
-	google.protobuf.Value owner = 5;
+    // Alert owner (filter). Typically "any" or "me"
+    //
+    // This is encoded as 'value' because it arbitrarily switches between 
+    // a string or an array with only one element
+    google.protobuf.Value owner = 5;
 
-	// Set of states permitted - encoded as integers in strings (e.g. "-1")
-	//
-	// Typical value appears to be any (open) encoded as -1
-	repeated string states = 6;
+    // Set of states permitted - encoded as integers in strings (e.g. "-1")
+    //
+    // Typical value appears to be any (open) encoded as -1
+    repeated string states = 6;
 
-	// Timeframe of the alert display
-	CommonTimeframe timeframe = 7;
+    // Timeframe of the alert display
+    CommonTimeframe timeframe = 7;
 }
 
 // Display options for alert list
 message AlertListTileConfig_Display {
 
-	// Max alerts to display
-	int32 limit = 1;
+    // Max alerts to display
+    int32 limit = 1;
 
-	// Whether to display column titles
-	bool show_titles = 2;
+    // Whether to display column titles
+    bool show_titles = 2;
 
-	// Whether to show all alerts regardless of limit
-	bool show_all = 3;
+    // Whether to show all alerts regardless of limit
+    bool show_all = 3;
 
-	// Column names to display in the list
-	repeated string columns = 4;
+    // Column names to display in the list
+    repeated string columns = 4;
 
     // e.g. 'column'
     string zoom = 5;
@@ -77,37 +77,37 @@ message AlertListTileConfig_Display {
 // Tile config of tile/alertlist-donut
 message AlertDonutTileConfig {
 
-	// We use the same source config as alert-list
-	AlertListTileConfig_Source source = 1;
+    // We use the same source config as alert-list
+    AlertListTileConfig_Source source = 1;
 
-	AlertDonutTileConfig_Display display = 2;
+    AlertDonutTileConfig_Display display = 2;
 
-	// TODO: Typing
-	google.protobuf.Value context = 3;
+    // TODO: Typing
+    google.protobuf.Value context = 3;
 }
 
 message AlertDonutTileConfig_Display {
 
-	// Size behaviour of the doughnut - typically 'default' or 'fill'
-	string size_mode = 1;
+    // Size behaviour of the doughnut - typically 'default' or 'fill'
+    string size_mode = 1;
 
-	// The scale factor of the legend
-	double legend_scale = 2;
+    // The scale factor of the legend
+    double legend_scale = 2;
 
-	// Whether to display a legend
-	bool show_legend = 3;
+    // Whether to display a legend
+    bool show_legend = 3;
 
-	// Position of the legend - e.g. left, right etc.
-	string legend_position = 4;
+    // Position of the legend - e.g. left, right etc.
+    string legend_position = 4;
 
-	// How to perform grouping - e.g. the default is "severity"
-	string grouping = 5;
+    // How to perform grouping - e.g. the default is "severity"
+    string grouping = 5;
 
-	AlertDonutTile_DisplayMappings mapping = 6;
+    AlertDonutTile_DisplayMappings mapping = 6;
 
-	// How groups are filtered - e.g. default is "Severity"
-	string grouping_filter_property = 7;
-	
+    // How groups are filtered - e.g. default is "Severity"
+    string grouping_filter_property = 7;
+    
     // e.g. 'column'
     string zoom = 8;
 }
@@ -115,17 +115,17 @@ message AlertDonutTileConfig_Display {
 // Mappings from status names to display settings such as colour
 message AlertDonutTile_DisplayMappings {
 
-	// Status name -> mapping settings such as colour
-	map<string, AlertDonutTile_StatusDisplayMapping> values = 1;
+    // Status name -> mapping settings such as colour
+    map<string, AlertDonutTile_StatusDisplayMapping> values = 1;
 }
 
 // Mapping of a given status into display settings
 message AlertDonutTile_StatusDisplayMapping {
-	int32 value = 1;
+    int32 value = 1;
 
-	// Hex colour value
-	string colour = 2;
+    // Hex colour value
+    string colour = 2;
 
-	// Display name of the mapping (e.g. "Information")
-	string display = 3;
+    // Display name of the mapping (e.g. "Information")
+    string display = 3;
 }
