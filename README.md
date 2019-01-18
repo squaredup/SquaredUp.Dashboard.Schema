@@ -1,5 +1,8 @@
 # Dashboard/perspective schema
 
+## Notice
+This schema data and its assembly are designed for programmatic schema consumption and verification - not end user consumption
+
 ## Tiles
 
 ## General purpose
